@@ -62,9 +62,25 @@ COMPETITIONS = {
     "CL":  "Champions League",
 }
 
-DAYS_AHEAD      = 7    # look for fixtures in the next N days
+DAYS_AHEAD       = 7    # look for fixtures in the next N days
 LOOKBACK_MATCHES = 10  # how many recent matches to use per team for form
-MAX_GOALS       = 6    # cap on scoreline grid (0..MAX_GOALS for each side)
+MAX_GOALS        = 6   # cap on scoreline grid (0..MAX_GOALS for each side)
+
+# Time-decay rate for recent-form weighting.
+# A match 30 days ago gets weight ~0.86, 90 days ago ~0.64, 180 days ago ~0.41.
+FORM_DECAY_RATE = 0.005
+
+# League-specific average goals per team per game (goals/match ÷ 2).
+# Used to normalise each team's attack/defence rates against a realistic baseline.
+LEAGUE_AVG_GOALS = {
+    "WC":  1.35,  # FIFA World Cup      ~2.70 goals/match
+    "PL":  1.40,  # Premier League      ~2.80 goals/match
+    "PD":  1.35,  # La Liga             ~2.70 goals/match
+    "BL1": 1.55,  # Bundesliga          ~3.10 goals/match
+    "SA":  1.30,  # Serie A             ~2.60 goals/match
+    "FL1": 1.35,  # Ligue 1             ~2.70 goals/match
+    "CL":  1.45,  # Champions League    ~2.90 goals/match
+}
 
 # Fixture IDs sent today are stored here to prevent duplicate messages.
 SENT_FIXTURES_FILE = "sent_fixtures.json"
@@ -154,13 +170,14 @@ def get_upcoming_fixtures():
                     continue
                 fixtures.append(
                     {
-                        "id":          m["id"],
-                        "competition": name,
-                        "utc_date":    m["utcDate"],
-                        "home_id":     home_id,
-                        "home_name":   home_name,
-                        "away_id":     away_id,
-                        "away_name":   away_name,
+                        "id":               m["id"],
+                        "competition":      name,
+                        "competition_code": code,
+                        "utc_date":         m["utcDate"],
+                        "home_id":          home_id,
+                        "home_name":        home_name,
+                        "away_id":          away_id,
+                        "away_name":        away_name,
                     }
                 )
             time.sleep(6)  # free tier: ~10 req/min, stay safe
@@ -188,12 +205,15 @@ def get_team_recent_matches(team_id, limit=LOOKBACK_MATCHES):
 # ----------------------------------------------------------------------
 def team_goal_rates(team_id, matches):
     """
-    Compute a team's average goals scored and conceded, split by
-    home/away, from its recent matches. Falls back to overall average
-    if not enough home/away-specific data exists.
+    Compute a team's time-weighted average goals scored and conceded,
+    split by home/away. Recent matches are weighted more heavily via
+    exponential decay (FORM_DECAY_RATE). Falls back to the overall
+    weighted average if not enough home/away-specific data exists.
     """
-    scored_home, conceded_home, home_games = 0, 0, 0
-    scored_away, conceded_away, away_games = 0, 0, 0
+    now = datetime.now(timezone.utc)
+
+    scored_home_w,   conceded_home_w,   home_w   = 0.0, 0.0, 0.0
+    scored_away_w,   conceded_away_w,   away_w   = 0.0, 0.0, 0.0
 
     for m in matches:
         home  = m["homeTeam"]["id"] == team_id
@@ -201,28 +221,37 @@ def team_goal_rates(team_id, matches):
         hg, ag = score.get("home"), score.get("away")
         if hg is None or ag is None:
             continue
-        if home:
-            scored_home   += hg
-            conceded_home += ag
-            home_games    += 1
-        else:
-            scored_away   += ag
-            conceded_away += hg
-            away_games    += 1
 
-    total_games = home_games + away_games
-    if total_games == 0:
-        # no data — return league-average-ish neutral rates
+        # Exponential time-decay: newer matches count more
+        try:
+            match_dt = datetime.fromisoformat(m["utcDate"].replace("Z", "+00:00"))
+            days_ago = max(0, (now - match_dt).days)
+        except (ValueError, TypeError, KeyError):
+            days_ago = 30  # safe fallback
+        w = math.exp(-FORM_DECAY_RATE * days_ago)
+
+        if home:
+            scored_home_w   += hg * w
+            conceded_home_w += ag * w
+            home_w          += w
+        else:
+            scored_away_w   += ag * w
+            conceded_away_w += hg * w
+            away_w          += w
+
+    total_w = home_w + away_w
+    if total_w == 0:
+        # no usable data — fall back to neutral league-average rates
         return {"attack_home": 1.3, "defense_home": 1.1, "attack_away": 1.1, "defense_away": 1.3}
 
-    avg_scored   = (scored_home + scored_away) / total_games
-    avg_conceded = (conceded_home + conceded_away) / total_games
+    avg_scored_w   = (scored_home_w   + scored_away_w)   / total_w
+    avg_conceded_w = (conceded_home_w + conceded_away_w) / total_w
 
     return {
-        "attack_home":  (scored_home   / home_games) if home_games else avg_scored,
-        "defense_home": (conceded_home / home_games) if home_games else avg_conceded,
-        "attack_away":  (scored_away   / away_games) if away_games else avg_scored,
-        "defense_away": (conceded_away / away_games) if away_games else avg_conceded,
+        "attack_home":  (scored_home_w   / home_w) if home_w else avg_scored_w,
+        "defense_home": (conceded_home_w / home_w) if home_w else avg_conceded_w,
+        "attack_away":  (scored_away_w   / away_w) if away_w else avg_scored_w,
+        "defense_away": (conceded_away_w / away_w) if away_w else avg_conceded_w,
     }
 
 
@@ -243,14 +272,17 @@ def poisson_pmf(k, lam):
     return (lam ** k) * math.exp(-lam) / math.factorial(k)
 
 
-def predict_match(home_stats, away_stats):
+def predict_match(home_stats, away_stats, competition_code=""):
     """
     Expected goals: blend each side's attack rate with the opponent's
     defensive weakness. Then build the full scoreline probability grid
     with the Dixon-Coles correlation tweak, and read off the most
     likely scoreline plus win/draw/loss probabilities.
+
+    Uses a league-specific average goals baseline (LEAGUE_AVG_GOALS) so
+    the normalisation reflects how open/defensive that competition tends to be.
     """
-    league_avg_goals = 1.35  # rough baseline across Europe's top 5 leagues
+    league_avg_goals = LEAGUE_AVG_GOALS.get(competition_code, 1.35)
 
     lambda_home = home_stats["attack_home"] * (away_stats["defense_away"] / league_avg_goals)
     lambda_away = away_stats["attack_away"] * (home_stats["defense_home"] / league_avg_goals)
@@ -381,7 +413,7 @@ def run_once():
 
         home_stats = stats_cache[fixture["home_id"]]
         away_stats = stats_cache[fixture["away_id"]]
-        prediction = predict_match(home_stats, away_stats)
+        prediction = predict_match(home_stats, away_stats, fixture["competition_code"])
 
         message = format_prediction_message(fixture, prediction)
         print("-" * 40)
