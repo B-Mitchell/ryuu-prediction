@@ -1,5 +1,5 @@
 # Football Prophet 🏆
-(https://t.me/ryuuprediction)
+[![Telegram](https://img.shields.io/badge/Telegram-Join%20Group-blue?logo=telegram)](https://t.me/ryuuprediction)
 A Telegram bot that predicts scorelines for upcoming football matches across major leagues and the FIFA World Cup, and posts them directly to the group.
 
 Powered by a **Poisson / Dixon-Coles statistical model** built from each team's recent form — not vibes.
