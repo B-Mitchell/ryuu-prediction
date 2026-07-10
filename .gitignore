@@ -1,0 +1,22 @@
+# Secrets — never commit these
+.env
+
+# Duplicate prevention state — committed by GitHub Actions, ignored locally
+# (comment the next line out if you want to commit it from your machine too)
+# sent_fixtures.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
