@@ -2,8 +2,9 @@ name: Football Predictions
 
 on:
   schedule:
-    # Runs every day at 08:00 UTC
+    # Runs twice daily at 08:00 UTC and 18:00 UTC
     - cron: '0 8 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch:
     # Allows you to run this manually from the GitHub Actions tab
 
@@ -22,6 +23,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: 'pip'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -31,15 +33,19 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
+          # Set DAYS_AHEAD in GitHub Actions → Settings → Variables
+          # 7 = normal season operation (predict next week's fixtures)
+          DAYS_AHEAD: ${{ vars.DAYS_AHEAD || '7' }}
         run: python predictor.py
 
-      - name: Save duplicate-prevention state
-        # Commits sent_fixtures.json back to the repo so the next run
-        # knows which fixtures were already sent. [skip ci] prevents
-        # this commit from triggering another workflow run.
+      - name: Save duplicate-prevention state & prediction history
+        # Commits sent_fixtures.json and prediction_history.json back to the repo
+        # so the next run knows which fixtures were already sent and retains
+        # accuracy resolution logs across daily runs. [skip ci] prevents looping.
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add sent_fixtures.json
-          git diff --staged --quiet || git commit -m "chore: update sent fixtures [skip ci]"
+          git add sent_fixtures.json prediction_history.json
+          git diff --staged --quiet || git commit -m "chore: update sent fixtures & prediction history [skip ci]"
           git push
+

@@ -20,3 +20,7 @@ env/
 # IDE
 .vscode/
 .idea/
+
+# Generated Match Preview Cards
+match_cards/
+
