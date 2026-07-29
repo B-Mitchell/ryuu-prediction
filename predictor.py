@@ -177,13 +177,17 @@ def api_get(path: str, params: dict = None) -> dict:
         try:
             resp = requests.get(url, headers=HEADERS, params=params, timeout=20)
             if resp.status_code == 429:
-                print("[warn] Rate limited — waiting 12s before retry...", file=sys.stderr)
-                time.sleep(12)
+                wait = 12 * (attempt + 1)
+                print(f"[warn] Rate limited (attempt {attempt + 1}/3) — waiting {wait}s before retry...", file=sys.stderr)
+                time.sleep(wait)
                 continue
+            if resp.status_code != 200:
+                print(f"[warn] Unexpected HTTP {resp.status_code} for {url}: {resp.text[:200]}", file=sys.stderr)
             resp.raise_for_status()
             return resp.json()
         except requests.exceptions.RequestException as e:
             if attempt == 2:
+                print(f"[error] API request permanently failed after 3 attempts for {url}: {e}", file=sys.stderr)
                 raise
             print(f"[warn] API request failed (attempt {attempt + 1}/3): {e}", file=sys.stderr)
             time.sleep(3)
@@ -191,6 +195,7 @@ def api_get(path: str, params: dict = None) -> dict:
 
 
 def get_upcoming_fixtures(days_ahead: int = None) -> list:
+    """Fetch SCHEDULED fixtures for all competitions within the next `days_ahead` days."""
     if days_ahead is None:
         days_ahead = DAYS_AHEAD
     now       = datetime.now(timezone.utc)
@@ -204,7 +209,9 @@ def get_upcoming_fixtures(days_ahead: int = None) -> list:
                 f"/competitions/{code}/matches",
                 params={"dateFrom": date_from, "dateTo": date_to, "status": "SCHEDULED"},
             )
-            for m in data.get("matches", []):
+            comp_matches = data.get("matches", [])
+            print(f"[info] {name}: {len(comp_matches)} scheduled fixture(s) in window.", file=sys.stderr)
+            for m in comp_matches:
                 home_id   = m["homeTeam"]["id"]
                 home_name = m["homeTeam"]["name"]
                 away_id   = m["awayTeam"]["id"]
@@ -223,7 +230,7 @@ def get_upcoming_fixtures(days_ahead: int = None) -> list:
                 })
             time.sleep(API_DELAY_S)
         except Exception as e:
-            print(f"[warn] could not fetch {name}: {e}", file=sys.stderr)
+            print(f"[error] could not fetch {name} fixtures: {e}", file=sys.stderr)
     return fixtures
 
 
@@ -821,26 +828,34 @@ def run_once(days_ahead: int = None) -> None:
         if summary_msg:
             send_telegram_message(summary_msg)
 
-    # Step 2 — Fetch fixtures for PREDICTIONS (7-day window)
-    print(f"Fetching upcoming fixtures (next {days_ahead} days)...")
-    fixtures = get_upcoming_fixtures(days_ahead=days_ahead)
+    # Step 2 — Fetch fixtures using WIDER 30-day window once.
+    # We reuse this single list for both:
+    #   (a) season-start countdown announcements (fixtures 1-4 days away)
+    #   (b) weekly predictions (fixtures within days_ahead window)
+    # This halves the number of API calls compared to fetching twice.
+    announcement_window = max(30, days_ahead)
+    print(f"Fetching upcoming fixtures (next {announcement_window} days)...")
+    all_fixtures = get_upcoming_fixtures(days_ahead=announcement_window)
 
-    # Always persist state here regardless of what happens next
-    save_sent_fixtures(sent_data)
-
-    # Step 3 — Season countdown announcements using a WIDER 30-day window
-    # This lets us announce "PL starts in 4 days" even before that week's
-    # fixtures appear in the 7-day prediction window.
-    print("Checking for upcoming season start announcements (next 30 days)...")
-    announcement_fixtures = get_upcoming_fixtures(days_ahead=30)
-    check_and_send_season_announcements(announcement_fixtures, sent_data)
+    # Step 3 — Season countdown announcements (reuse already-fetched fixture list)
+    print("Checking for upcoming season start announcements...")
+    check_and_send_season_announcements(all_fixtures, sent_data)
     save_sent_fixtures(sent_data)  # persist announcement keys immediately
+
+    # Step 4 — Filter to only fixtures within the prediction window
+    now          = datetime.now(timezone.utc)
+    cutoff       = now + timedelta(days=days_ahead)
+    fixtures     = [
+        f for f in all_fixtures
+        if datetime.fromisoformat(f["utc_date"].replace("Z", "+00:00")) <= cutoff
+    ]
+    print(f"Fixtures within {days_ahead}-day prediction window: {len(fixtures)}")
 
     if not fixtures:
         print(f"No upcoming fixtures found in next {days_ahead} days.")
         return
 
-    # Step 4 — Filter to only new fixtures
+    # Step 5 — Filter to only new fixtures not yet sent
     new_fixtures = [f for f in fixtures if not is_fixture_sent(f["id"], sent_data)]
     skipped      = len(fixtures) - len(new_fixtures)
     if skipped:
