@@ -102,5 +102,57 @@
     "actual_outcome": null,
     "is_outcome_correct": null,
     "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564636,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "RC Celta de Vigo",
+    "away_name": "CA Osasuna",
+    "utc_date": "2026-08-16T19:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "RC Celta de Vigo Win",
+    "pick_prob": 0.5468350262216644,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.83,
+    "predicted_score": [
+      2,
+      1
+    ],
+    "over_2_5_prob": 0.7226519073572212,
+    "btts_yes_prob": 0.700340214210667,
+    "created_at": "2026-08-11T09:07:14.026826+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564635,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "RC Deportivo La Coru\u00f1a",
+    "away_name": "Elche CF",
+    "utc_date": "2026-08-17T19:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "RC Deportivo La Coru\u00f1a Win",
+    "pick_prob": 0.5309805226949846,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.88,
+    "predicted_score": [
+      1,
+      0
+    ],
+    "over_2_5_prob": 0.42550709353932853,
+    "btts_yes_prob": 0.4569768498932441,
+    "created_at": "2026-08-11T09:07:28.972951+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
   }
 ]
