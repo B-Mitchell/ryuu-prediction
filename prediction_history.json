@@ -180,5 +180,31 @@
     "actual_outcome": null,
     "is_outcome_correct": null,
     "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564638,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Rayo Vallecano de Madrid",
+    "away_name": "Deportivo Alav\u00e9s",
+    "utc_date": "2026-08-20T19:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Rayo Vallecano Win",
+    "pick_prob": 0.5688449807041576,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.76,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.6072136385341429,
+    "btts_yes_prob": 0.5956729607001637,
+    "created_at": "2026-08-14T09:13:39.436819+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
   }
 ]

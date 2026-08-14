@@ -14,11 +14,15 @@
     ],
     "2026-08-13": [
       564628
+    ],
+    "2026-08-14": [
+      564638
     ]
   },
   "announcements": {
     "announce_PD_2026-08-15_d4": true,
     "announce_PD_2026-08-15_d3": true,
-    "announce_PD_2026-08-15_d2": true
+    "announce_PD_2026-08-15_d2": true,
+    "announce_PD_2026-08-15_d1": true
   }
 }
