@@ -206,5 +206,83 @@
     "actual_outcome": null,
     "is_outcome_correct": null,
     "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 560542,
+    "competition": "Premier League",
+    "competition_code": "PL",
+    "home_name": "Arsenal FC",
+    "away_name": "Coventry City FC",
+    "utc_date": "2026-08-21T19:00:00Z",
+    "predicted_pick": "DRAW",
+    "pick_name": "Draw",
+    "pick_prob": 0.6092058532161606,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.64,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.023115222510164207,
+    "btts_yes_prob": 0.07211448696191523,
+    "created_at": "2026-08-15T08:37:12.785017+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564647,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Real Betis Balompi\u00e9",
+    "away_name": "Real Sociedad de F\u00fatbol",
+    "utc_date": "2026-08-21T19:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Real Betis Balompi\u00e9 Win",
+    "pick_prob": 0.7288977060825981,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.37,
+    "predicted_score": [
+      2,
+      0
+    ],
+    "over_2_5_prob": 0.49388965101142923,
+    "btts_yes_prob": 0.37959067602725677,
+    "created_at": "2026-08-15T08:37:42.670367+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559715,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "Olympique de Marseille",
+    "away_name": "RC Strasbourg Alsace",
+    "utc_date": "2026-08-21T18:45:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Olympique de Marseille Win",
+    "pick_prob": 0.44000543378434276,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.27,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.5896257721521434,
+    "btts_yes_prob": 0.6190481102877157,
+    "created_at": "2026-08-15T08:37:57.914797+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
   }
 ]
