@@ -1076,5 +1076,57 @@
     "actual_outcome": null,
     "is_outcome_correct": null,
     "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564639,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "CA Osasuna",
+    "away_name": "Levante UD",
+    "utc_date": "2026-08-24T17:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "CA Osasuna Win",
+    "pick_prob": 0.6559877266659956,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.52,
+    "predicted_score": [
+      2,
+      0
+    ],
+    "over_2_5_prob": 0.5501909503839786,
+    "btts_yes_prob": 0.4962685743829639,
+    "created_at": "2026-08-17T18:23:29.727696+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558630,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "Bologna FC 1909",
+    "away_name": "SS Lazio",
+    "utc_date": "2026-08-24T16:30:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "SS Lazio Win",
+    "pick_prob": 0.48982973305759275,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.04,
+    "predicted_score": [
+      0,
+      1
+    ],
+    "over_2_5_prob": 0.3203987198200815,
+    "btts_yes_prob": 0.3789130573178862,
+    "created_at": "2026-08-17T18:23:44.978513+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
   }
 ]
