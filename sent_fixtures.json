@@ -61,6 +61,11 @@
       559713,
       564639,
       558630
+    ],
+    "2026-08-18": [
+      560551,
+      564640,
+      558638
     ]
   },
   "announcements": {
@@ -70,6 +75,10 @@
     "announce_PD_2026-08-15_d1": true,
     "announce_PD_2026-08-17_d1": true,
     "announce_PL_2026-08-21_d4": true,
-    "announce_FL1_2026-08-21_d4": true
+    "announce_FL1_2026-08-21_d4": true,
+    "announce_PL_2026-08-21_d3": true,
+    "announce_PD_2026-08-19_d1": true,
+    "announce_SA_2026-08-22_d4": true,
+    "announce_FL1_2026-08-21_d3": true
   }
 }
