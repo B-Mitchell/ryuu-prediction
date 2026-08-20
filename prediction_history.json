@@ -190,11 +190,14 @@
     "over_2_5_prob": 0.3454119075384398,
     "btts_yes_prob": 0.42868673556192854,
     "created_at": "2026-08-13T09:19:37.275472+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564638,
@@ -1230,6 +1233,32 @@
     "over_2_5_prob": 0.7968863040669981,
     "btts_yes_prob": 0.7734229373548087,
     "created_at": "2026-08-19T08:46:22.331213+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564631,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Real Madrid CF",
+    "away_name": "Real Sociedad de F\u00fatbol",
+    "utc_date": "2026-08-26T19:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Real Madrid Win",
+    "pick_prob": 0.7037495679172908,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.42,
+    "predicted_score": [
+      2,
+      1
+    ],
+    "over_2_5_prob": 0.7098773249932541,
+    "btts_yes_prob": 0.6096129839330229,
+    "created_at": "2026-08-20T08:48:20.353314+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
