@@ -72,6 +72,10 @@
     ],
     "2026-08-20": [
       564631
+    ],
+    "2026-08-21": [
+      564636,
+      564630
     ]
   },
   "announcements": {
@@ -91,6 +95,7 @@
     "announce_FL1_2026-08-21_d2": true,
     "announce_PL_2026-08-21_d1": true,
     "announce_SA_2026-08-22_d2": true,
-    "announce_FL1_2026-08-21_d1": true
+    "announce_FL1_2026-08-21_d1": true,
+    "announce_SA_2026-08-22_d1": true
   }
 }
