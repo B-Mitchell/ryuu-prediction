@@ -1293,5 +1293,31 @@
     "actual_outcome": null,
     "is_outcome_correct": null,
     "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564654,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Real Racing Club de Santander",
+    "away_name": "Elche CF",
+    "utc_date": "2026-08-28T17:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Racing Santander Win",
+    "pick_prob": 0.514557322421802,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 1.94,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.7053560574284968,
+    "btts_yes_prob": 0.6952298310298346,
+    "created_at": "2026-08-21T18:23:08.299198+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
   }
 ]
