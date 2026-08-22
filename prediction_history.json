@@ -248,11 +248,14 @@
     "over_2_5_prob": 0.023115222510164207,
     "btts_yes_prob": 0.07211448696191523,
     "created_at": "2026-08-15T08:37:12.785017+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      3,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564647,
@@ -274,11 +277,14 @@
     "over_2_5_prob": 0.49388965101142923,
     "btts_yes_prob": 0.37959067602725677,
     "created_at": "2026-08-15T08:37:42.670367+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559715,
@@ -300,11 +306,14 @@
     "over_2_5_prob": 0.5896257721521434,
     "btts_yes_prob": 0.6190481102877157,
     "created_at": "2026-08-15T08:37:57.914797+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      4,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560543,
@@ -1314,6 +1323,136 @@
     "over_2_5_prob": 0.7053560574284968,
     "btts_yes_prob": 0.6952298310298346,
     "created_at": "2026-08-21T18:23:08.299198+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 560555,
+    "competition": "Premier League",
+    "competition_code": "PL",
+    "home_name": "Crystal Palace FC",
+    "away_name": "Manchester City FC",
+    "utc_date": "2026-08-28T19:00:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Man City Win",
+    "pick_prob": 0.5079400751168295,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 1.97,
+    "predicted_score": [
+      0,
+      1
+    ],
+    "over_2_5_prob": 0.37146164381122937,
+    "btts_yes_prob": 0.41862572781403184,
+    "created_at": "2026-08-22T08:39:45.396291+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564648,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Deportivo Alav\u00e9s",
+    "away_name": "Villarreal CF",
+    "utc_date": "2026-08-28T19:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Alav\u00e9s Win",
+    "pick_prob": 0.5976528629721718,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.67,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.5808038747647372,
+    "btts_yes_prob": 0.55938655334608,
+    "created_at": "2026-08-22T08:40:32.149156+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 565776,
+    "competition": "Bundesliga",
+    "competition_code": "BL1",
+    "home_name": "FC Bayern M\u00fcnchen",
+    "away_name": "VfB Stuttgart",
+    "utc_date": "2026-08-28T18:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "FC Bayern M\u00fcnchen Win",
+    "pick_prob": 0.4725940197978705,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.12,
+    "predicted_score": [
+      3,
+      3
+    ],
+    "over_2_5_prob": 0.9754368717425942,
+    "btts_yes_prob": 0.9483634869267148,
+    "created_at": "2026-08-22T08:40:47.203798+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558625,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "AC Milan",
+    "away_name": "Venezia FC",
+    "utc_date": "2026-08-28T18:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Venezia Win",
+    "pick_prob": 0.48523507879438915,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.06,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.5428270058082749,
+    "btts_yes_prob": 0.5720975499931721,
+    "created_at": "2026-08-22T08:41:31.898788+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559702,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "Lille OSC",
+    "away_name": "Paris Saint-Germain FC",
+    "utc_date": "2026-08-28T18:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "PSG Win",
+    "pick_prob": 0.4744214124879684,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.11,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.22075797020818486,
+    "btts_yes_prob": 0.2859457662992452,
+    "created_at": "2026-08-22T08:42:01.394200+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
