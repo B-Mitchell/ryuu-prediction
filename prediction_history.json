@@ -451,11 +451,14 @@
     "over_2_5_prob": 0.3748139120949646,
     "btts_yes_prob": 0.437226542399146,
     "created_at": "2026-08-15T18:16:16.568770+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      3,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564641,
@@ -506,11 +509,14 @@
     "over_2_5_prob": 0.5113667294190155,
     "btts_yes_prob": 0.5647849658120042,
     "created_at": "2026-08-15T18:16:46.400841+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      0
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558629,
@@ -532,11 +538,14 @@
     "over_2_5_prob": 0.09617208712882143,
     "btts_yes_prob": 0.14868104221045436,
     "created_at": "2026-08-15T18:17:01.117797+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      1
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558632,
@@ -558,11 +567,14 @@
     "over_2_5_prob": 0.5763191185671351,
     "btts_yes_prob": 0.44194930174443725,
     "created_at": "2026-08-15T18:17:16.395819+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      4,
+      1
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559712,
@@ -584,11 +596,14 @@
     "over_2_5_prob": 0.6583257330786765,
     "btts_yes_prob": 0.617485429029713,
     "created_at": "2026-08-15T18:17:31.230193+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      5,
+      2
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564645,
@@ -610,11 +625,14 @@
     "over_2_5_prob": 0.26199958050043054,
     "btts_yes_prob": 0.3563149075004515,
     "created_at": "2026-08-16T08:37:50.771364+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      2
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558631,
@@ -636,11 +654,14 @@
     "over_2_5_prob": 0.33968385400896367,
     "btts_yes_prob": 0.22148722736500207,
     "created_at": "2026-08-16T08:38:05.770143+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      2
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558636,
@@ -662,11 +683,14 @@
     "over_2_5_prob": 0.35326373095631286,
     "btts_yes_prob": 0.40301722304362664,
     "created_at": "2026-08-16T08:38:20.718803+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      1
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559711,
@@ -688,11 +712,14 @@
     "over_2_5_prob": 0.4277612537215382,
     "btts_yes_prob": 0.2330979428069108,
     "created_at": "2026-08-16T08:38:35.438939+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      2
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559714,
@@ -714,11 +741,14 @@
     "over_2_5_prob": 0.33265257302397694,
     "btts_yes_prob": 0.4211570447806555,
     "created_at": "2026-08-16T08:38:50.131666+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      0
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559716,
@@ -766,11 +796,14 @@
     "over_2_5_prob": 0.22589703604335823,
     "btts_yes_prob": 0.3139025403163201,
     "created_at": "2026-08-16T08:39:19.580862+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      2
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560548,
@@ -1884,6 +1917,162 @@
     "over_2_5_prob": 0.9065224782874637,
     "btts_yes_prob": 0.8706745653376959,
     "created_at": "2026-08-22T18:20:24.598017+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564649,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Sevilla FC",
+    "away_name": "Club Atl\u00e9tico de Madrid",
+    "utc_date": "2026-08-29T19:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Sevilla Win",
+    "pick_prob": 0.6694119481051594,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.49,
+    "predicted_score": [
+      2,
+      0
+    ],
+    "over_2_5_prob": 0.5819444167560254,
+    "btts_yes_prob": 0.5154728299242174,
+    "created_at": "2026-08-23T08:41:11.413096+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558619,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "Juventus FC",
+    "away_name": "Parma Calcio 1913",
+    "utc_date": "2026-08-29T18:45:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Juventus Win",
+    "pick_prob": 0.48631088447392423,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.06,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.12204326756719602,
+    "btts_yes_prob": 0.16302348962846386,
+    "created_at": "2026-08-23T08:41:50.279203+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559705,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "FC Lorient",
+    "away_name": "ES Troyes AC",
+    "utc_date": "2026-08-29T18:45:00Z",
+    "predicted_pick": "DRAW",
+    "pick_name": "Draw",
+    "pick_prob": 0.6092058532161606,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.64,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.023115222510164207,
+    "btts_yes_prob": 0.07211448696191523,
+    "created_at": "2026-08-23T08:42:35.462859+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559706,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "Olympique Lyonnais",
+    "away_name": "Le Havre AC",
+    "utc_date": "2026-08-29T18:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Le Havre Win",
+    "pick_prob": 0.3857116935652896,
+    "confidence_level": "Low",
+    "stake_units": "1/3 Units",
+    "fair_odds": 2.59,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.7108037619434963,
+    "btts_yes_prob": 0.7163950555431192,
+    "created_at": "2026-08-23T08:42:44.058152+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559708,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "AJ Auxerre",
+    "away_name": "Angers SCO",
+    "utc_date": "2026-08-29T18:45:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "AJ Auxerre Win",
+    "pick_prob": 0.8957023698625455,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.12,
+    "predicted_score": [
+      3,
+      0
+    ],
+    "over_2_5_prob": 0.6905346390738526,
+    "btts_yes_prob": 0.32191018036512853,
+    "created_at": "2026-08-23T08:42:52.647467+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559710,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "Stade Brestois 29",
+    "away_name": "Toulouse FC",
+    "utc_date": "2026-08-29T18:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Toulouse Win",
+    "pick_prob": 0.4655054763467645,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.15,
+    "predicted_score": [
+      3,
+      3
+    ],
+    "over_2_5_prob": 0.9739087360430123,
+    "btts_yes_prob": 0.9465900813362337,
+    "created_at": "2026-08-23T08:43:07.775854+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
