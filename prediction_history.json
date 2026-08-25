@@ -1205,11 +1205,14 @@
     "over_2_5_prob": 0.5501909503839786,
     "btts_yes_prob": 0.4962685743829639,
     "created_at": "2026-08-17T18:23:29.727696+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      0
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558630,
@@ -1231,11 +1234,14 @@
     "over_2_5_prob": 0.3203987198200815,
     "btts_yes_prob": 0.3789130573178862,
     "created_at": "2026-08-17T18:23:44.978513+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      1
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": true
   },
   {
     "fixture_id": 560551,
@@ -1257,11 +1263,14 @@
     "over_2_5_prob": 0.3698905087353036,
     "btts_yes_prob": 0.22590355595916253,
     "created_at": "2026-08-18T08:45:24.024669+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      3
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564640,
@@ -1283,11 +1292,14 @@
     "over_2_5_prob": 0.26337003360882283,
     "btts_yes_prob": 0.35777411358434735,
     "created_at": "2026-08-18T08:45:39.093029+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      1
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558638,
@@ -1309,11 +1321,14 @@
     "over_2_5_prob": 0.43395013265149407,
     "btts_yes_prob": 0.23378246069010056,
     "created_at": "2026-08-18T08:45:54.221274+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      4,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564637,
@@ -2557,6 +2572,84 @@
     "over_2_5_prob": 0.4547222377963178,
     "btts_yes_prob": 0.4197804598834093,
     "created_at": "2026-08-24T18:26:17.031610+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 560557,
+    "competition": "Premier League",
+    "competition_code": "PL",
+    "home_name": "Aston Villa FC",
+    "away_name": "Arsenal FC",
+    "utc_date": "2026-08-31T19:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Aston Villa Win",
+    "pick_prob": 0.5916198571813391,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.69,
+    "predicted_score": [
+      3,
+      2
+    ],
+    "over_2_5_prob": 0.9379893835074753,
+    "btts_yes_prob": 0.8888372954063832,
+    "created_at": "2026-08-25T08:52:33.722153+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564650,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "FC Barcelona",
+    "away_name": "Rayo Vallecano de Madrid",
+    "utc_date": "2026-08-31T19:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "FC Barcelona Win",
+    "pick_prob": 0.830897725476009,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.2,
+    "predicted_score": [
+      2,
+      0
+    ],
+    "over_2_5_prob": 0.5876349604914867,
+    "btts_yes_prob": 0.33936325590042754,
+    "created_at": "2026-08-25T08:52:48.960603+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558628,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "Atalanta BC",
+    "away_name": "Bologna FC 1909",
+    "utc_date": "2026-08-31T18:45:00Z",
+    "predicted_pick": "DRAW",
+    "pick_name": "Draw",
+    "pick_prob": 0.38914071595629723,
+    "confidence_level": "Low",
+    "stake_units": "1/3 Units",
+    "fair_odds": 2.57,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.19700330615785042,
+    "btts_yes_prob": 0.29658099525385256,
+    "created_at": "2026-08-25T08:53:04.104908+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
