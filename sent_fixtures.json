@@ -1,9 +1,5 @@
 {
   "fixtures": {
-    "2026-08-11": [
-      564636,
-      564635
-    ],
     "2026-08-13": [
       564628
     ],
@@ -173,6 +169,10 @@
     "announce_PL_2026-08-28_d3": true,
     "announce_BL1_2026-08-28_d3": true,
     "announce_SA_2026-08-28_d3": true,
-    "announce_FL1_2026-08-28_d3": true
+    "announce_FL1_2026-08-28_d3": true,
+    "announce_PL_2026-08-28_d2": true,
+    "announce_BL1_2026-08-28_d2": true,
+    "announce_SA_2026-08-28_d2": true,
+    "announce_FL1_2026-08-28_d2": true
   }
 }
