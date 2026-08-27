@@ -1379,11 +1379,14 @@
     "over_2_5_prob": 0.7098773249932541,
     "btts_yes_prob": 0.6096129839330229,
     "created_at": "2026-08-20T08:48:20.353314+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      4,
+      1
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564630,
@@ -2653,6 +2656,58 @@
     "over_2_5_prob": 0.19700330615785042,
     "btts_yes_prob": 0.29658099525385256,
     "created_at": "2026-08-25T08:53:04.104908+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564682,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Real Sociedad de F\u00fatbol",
+    "away_name": "RC Celta de Vigo",
+    "utc_date": "2026-09-03T19:00:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "RC Celta de Vigo Win",
+    "pick_prob": 0.4369719345603451,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.29,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.5507234608500376,
+    "btts_yes_prob": 0.5890431859558577,
+    "created_at": "2026-08-27T19:01:22.842663+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559696,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "Toulouse FC",
+    "away_name": "Lille OSC",
+    "utc_date": "2026-09-03T18:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Lille OSC Win",
+    "pick_prob": 0.852139839100173,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.17,
+    "predicted_score": [
+      0,
+      2
+    ],
+    "over_2_5_prob": 0.5325674625374772,
+    "btts_yes_prob": 0.24292099947845885,
+    "created_at": "2026-08-27T19:01:37.755946+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
