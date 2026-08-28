@@ -144,7 +144,13 @@
       559696
     ],
     "2026-08-28": [
-      564654
+      564654,
+      560566,
+      564667,
+      565791,
+      558609,
+      559699,
+      559697
     ]
   },
   "announcements": {
@@ -182,6 +188,11 @@
     "announce_PL_2026-08-28_d1": true,
     "announce_BL1_2026-08-28_d1": true,
     "announce_SA_2026-08-28_d1": true,
-    "announce_FL1_2026-08-28_d1": true
+    "announce_FL1_2026-08-28_d1": true,
+    "announce_PL_2026-08-29_d1": true,
+    "announce_PD_2026-08-29_d1": true,
+    "announce_BL1_2026-08-29_d1": true,
+    "announce_SA_2026-08-29_d1": true,
+    "announce_FL1_2026-08-29_d1": true
   }
 }
