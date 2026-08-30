@@ -184,7 +184,17 @@
       558612,
       558615,
       559709,
-      559700
+      559700,
+      560570,
+      564659,
+      564664,
+      564666,
+      564661,
+      565786,
+      558613,
+      558618,
+      559698,
+      559694
     ]
   },
   "announcements": {
@@ -232,6 +242,10 @@
     "announce_PD_2026-08-30_d1": true,
     "announce_BL1_2026-08-30_d1": true,
     "announce_SA_2026-08-30_d1": true,
-    "announce_FL1_2026-08-30_d1": true
+    "announce_FL1_2026-08-30_d1": true,
+    "announce_PL_2026-08-31_d1": true,
+    "announce_PD_2026-08-31_d1": true,
+    "announce_SA_2026-08-31_d1": true,
+    "announce_FL1_2026-09-03_d4": true
   }
 }
