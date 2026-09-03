@@ -186,7 +186,13 @@
     ],
     "2026-09-03": [
       564682,
-      559696
+      559696,
+      575335,
+      575336,
+      575337,
+      575338,
+      575339,
+      575340
     ]
   },
   "announcements": {
@@ -254,6 +260,8 @@
     "announce_FL1_2026-09-03_d1": true,
     "announce_PL_2026-09-04_d1": true,
     "announce_BL1_2026-09-04_d1": true,
-    "announce_SA_2026-09-04_d1": true
+    "announce_SA_2026-09-04_d1": true,
+    "announce_PD_2026-09-05_d2": true,
+    "announce_FL1_2026-09-04_d1": true
   }
 }
