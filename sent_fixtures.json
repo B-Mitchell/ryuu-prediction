@@ -196,7 +196,9 @@
       564667,
       558609,
       559699,
-      559697
+      559697,
+      564669,
+      559689
     ]
   },
   "announcements": {
@@ -267,6 +269,9 @@
     "announce_SA_2026-09-04_d1": true,
     "announce_PD_2026-09-05_d2": true,
     "announce_FL1_2026-09-04_d1": true,
-    "announce_CL_2026-09-08_d4": true
+    "announce_CL_2026-09-08_d4": true,
+    "announce_PL_2026-09-05_d1": true,
+    "announce_PD_2026-09-05_d1": true,
+    "announce_FL1_2026-09-05_d1": true
   }
 }
