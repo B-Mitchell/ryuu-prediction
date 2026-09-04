@@ -2858,11 +2858,14 @@
     "over_2_5_prob": 0.5325674625374772,
     "btts_yes_prob": 0.24292099947845885,
     "created_at": "2026-08-27T19:01:37.755946+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      1
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560566,
