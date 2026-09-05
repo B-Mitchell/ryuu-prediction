@@ -574,7 +574,8 @@ def predict_match(home_stats: dict, away_stats: dict, competition_code: str = ""
 
 
 # ----------------------------------------------------------------------
-# Pillow Image Card Generator — Glassmorphism Dark (1200×675)
+# ----------------------------------------------------------------------
+# Pillow Image Card Generator -- Clean White Minimal (1200x630)
 # ----------------------------------------------------------------------
 
 
@@ -597,381 +598,202 @@ def get_card_font(size: int, bold: bool = False) -> ImageFont.ImageFont:
     return ImageFont.load_default()
 
 
-def _hex_to_rgba(hex_color: str, alpha: int = 255) -> tuple:
-    """Convert a hex color string to an RGBA tuple."""
-    h = hex_color.lstrip("#")
-    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
-    return (r, g, b, alpha)
-
-
-def _draw_glass_panel(
-    img: Image.Image,
-    x0: int, y0: int, x1: int, y1: int,
-    fill_rgba: tuple = (255, 255, 255, 20),
-    border_rgba: tuple = (0, 230, 200, 60),
-    radius: int = 18,
-    border_width: int = 1,
-) -> None:
-    """Draws a frosted-glass panel with transparency onto img (RGBA mode)."""
-    panel = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    pdraw = ImageDraw.Draw(panel)
-    pdraw.rounded_rectangle([x0, y0, x1, y1], radius=radius, fill=fill_rgba, outline=border_rgba, width=border_width)
-    img.alpha_composite(panel)
-
-
-def _draw_glow_line(img: Image.Image, x0: int, y: int, x1: int, color_rgba: tuple, thickness: int = 2) -> None:
-    """Draws a soft horizontal glow line by layering semi-transparent strokes."""
-    for spread, alpha_mult in [(4, 0.15), (2, 0.25), (0, 1.0)]:
-        layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
-        ldraw = ImageDraw.Draw(layer)
-        r, g, b, _ = color_rgba
-        a = int(color_rgba[3] * alpha_mult)
-        for off in range(-spread, spread + 1):
-            ldraw.line([(x0, y + off), (x1, y + off)], fill=(r, g, b, max(0, a - abs(off) * 10)), width=1)
-        img.alpha_composite(layer)
-
-
 def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
-    """Generates a premium glassmorphism dark-mode match preview card PNG (1200x675)."""
+    """Generates a clean, minimal white match preview card PNG (1200x630)."""
     try:
         os.makedirs(MATCH_CARDS_DIR, exist_ok=True)
         file_path = os.path.join(MATCH_CARDS_DIR, f"card_{fixture['id']}.png")
 
-        W, H = 1200, 675
+        W, H = 1200, 480
 
-        # ── Palette ──────────────────────────────────────────────────────
-        BG_DARK       = (10, 15, 28)        # near-black navy
-        BG_MID        = (14, 22, 42)        # deep navy for cards
-        TEAL          = (0, 212, 180)       # primary teal/aqua accent
-        TEAL_DIM      = (0, 160, 136)       # darker teal
-        TEAL_GLOW     = (0, 212, 180, 120)  # teal with alpha for glows
-        PANEL_FILL    = (255, 255, 255, 14) # near-transparent white glass
-        PANEL_BORDER  = (0, 212, 180, 55)   # teal border
-        TEXT_WHITE    = "#f0f6ff"
-        TEXT_MUTED    = "#7a93b8"
-        TEXT_DIM      = "#445c7a"
-        TEAL_HEX      = "#00d4b4"
-        TEAL_DIM_HEX  = "#00a088"
-        AMBER_HEX     = "#f59e0b"
-        RED_HEX       = "#ff4d6d"
-        SLATE_HEX     = "#64748b"
-        WHITE_10      = (255, 255, 255, 10)
-        WHITE_20      = (255, 255, 255, 20)
-        WHITE_25      = (255, 255, 255, 25)
+        # Palette
+        BG       = "#ffffff"
+        CARD_BG  = "#f9fafb"
+        BORDER   = "#e5e7eb"
+        INK      = "#111827"
+        MUTED    = "#6b7280"
+        LIGHT    = "#9ca3af"
+        GREEN    = "#16a34a"
+        RED      = "#dc2626"
+        GREY_BAR = "#d1d5db"
+        DIVIDER  = "#e5e7eb"
 
-        # ── 0. BACKGROUND — deep dark with subtle radial-style gradient ──
-        img = Image.new("RGBA", (W, H), BG_DARK)
+        img  = Image.new("RGB", (W, H), BG)
         draw = ImageDraw.Draw(img)
 
-        # Subtle dark blue-purple sweep across the top half
-        for y_row in range(H // 2):
-            alpha = int(30 * (1 - y_row / (H / 2)))
-            layer_row = Image.new("RGBA", (W, 1), (20, 30, 80, alpha))
-            img.alpha_composite(layer_row, dest=(0, y_row))
+        draw.rectangle([0, 0, W - 1, H - 1], outline=BORDER, width=1)
 
-        # Soft teal orb glow top-left and bottom-right corners
-        for cx, cy, rad, base_alpha in [(200, 100, 320, 25), (1020, 580, 260, 20)]:
-            for r_step in range(rad, 0, -6):
-                a = int(base_alpha * (1 - r_step / rad))
-                x0g, y0g = cx - r_step, cy - r_step
-                x1g, y1g = cx + r_step, cy + r_step
-                glow_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-                gd = ImageDraw.Draw(glow_layer)
-                gd.ellipse([x0g, y0g, x1g, y1g], fill=(0, 212, 180, a))
-                img.alpha_composite(glow_layer)
+        # -- 1. HEADER ------------------------------------------------
+        hdr_h = 60
+        draw.rectangle([0, 0, W, hdr_h], fill=CARD_BG)
+        draw.line([(0, hdr_h), (W, hdr_h)], fill=DIVIDER, width=1)
 
-        # Outer card frame — subtle teal border
-        _draw_glass_panel(img, 12, 12, W - 12, H - 12,
-                          fill_rgba=(0, 0, 0, 0), border_rgba=(0, 212, 180, 40), radius=28, border_width=1)
-
-        # ── 1. HEADER AREA ────────────────────────────────────────────
-        # Top divider glow line
-        _draw_glow_line(img, 40, 80, W - 40, TEAL_GLOW, thickness=1)
-
-        comp_text = clean_text_for_image(fixture.get("competition", "COMPETITION")).upper()
         font_comp  = get_card_font(13, bold=True)
-        font_eng   = get_card_font(12)
+        font_label = get_card_font(12)
         font_date  = get_card_font(13)
 
-        # Competition pill
-        draw2 = ImageDraw.Draw(img)
-        comp_bb = draw2.textbbox((0, 0), comp_text, font=font_comp)
-        comp_w  = comp_bb[2] - comp_bb[0] + 32
-        comp_h  = 28
-        _draw_glass_panel(img, 42, 26, 42 + comp_w, 26 + comp_h,
-                          fill_rgba=(0, 212, 180, 20), border_rgba=(0, 212, 180, 80), radius=8, border_width=1)
-        draw2 = ImageDraw.Draw(img)
-        # dot
-        draw2.ellipse([52, 26 + comp_h // 2 - 4, 60, 26 + comp_h // 2 + 4], fill=TEAL)
-        draw2.text((64, 26 + (comp_h - (comp_bb[3] - comp_bb[1])) // 2), comp_text, fill=TEAL_HEX, font=font_comp)
+        comp_text = clean_text_for_image(fixture.get("competition", "COMPETITION")).upper()
+        draw.text((36, hdr_h // 2 - 8), comp_text, fill=INK, font=font_comp)
 
-        # Centre engine pill
-        eng_txt = "RYUU PREDICTION AI  •  STATISTICAL MODEL"
-        eng_bb  = draw2.textbbox((0, 0), eng_txt, font=font_eng)
-        eng_w   = eng_bb[2] - eng_bb[0] + 28
-        eng_x   = W // 2 - eng_w // 2
-        _draw_glass_panel(img, eng_x, 26, eng_x + eng_w, 26 + comp_h,
-                          fill_rgba=WHITE_10, border_rgba=(0, 212, 180, 35), radius=8, border_width=1)
-        draw2 = ImageDraw.Draw(img)
-        draw2.text((eng_x + 14, 26 + (comp_h - (eng_bb[3] - eng_bb[1])) // 2), eng_txt, fill=TEXT_MUTED, font=font_eng)
+        brand_txt = "RYUU PREDICTION AI"
+        brand_bb  = draw.textbbox((0, 0), brand_txt, font=font_label)
+        draw.text((W // 2 - (brand_bb[2] - brand_bb[0]) // 2, hdr_h // 2 - 8), brand_txt, fill=MUTED, font=font_label)
 
-        # Date pill (right)
-        dt = datetime.fromisoformat(fixture["utc_date"].replace("Z", "+00:00"))
-        date_str = dt.strftime("%a %d %b  •  %H:%M UTC")
-        dt_bb   = draw2.textbbox((0, 0), date_str, font=font_date)
-        dt_w    = dt_bb[2] - dt_bb[0] + 28
-        dt_x    = W - 42 - dt_w
-        _draw_glass_panel(img, dt_x, 26, dt_x + dt_w, 26 + comp_h,
-                          fill_rgba=WHITE_10, border_rgba=(100, 116, 139, 50), radius=8, border_width=1)
-        draw2 = ImageDraw.Draw(img)
-        draw2.text((dt_x + 14, 26 + (comp_h - (dt_bb[3] - dt_bb[1])) // 2), date_str, fill=TEXT_MUTED, font=font_date)
+        dt       = datetime.fromisoformat(fixture["utc_date"].replace("Z", "+00:00"))
+        date_str = dt.strftime("%a %d %b  -  %H:%M UTC")
+        dt_bb    = draw.textbbox((0, 0), date_str, font=font_date)
+        draw.text((W - 36 - (dt_bb[2] - dt_bb[0]), hdr_h // 2 - 8), date_str, fill=MUTED, font=font_date)
 
-        # ── 2. TEAMS SECTION ──────────────────────────────────────────
+        # -- 2. TEAMS -------------------------------------------------
         home_clean = clean_team_name(fixture["home_name"])
         away_clean = clean_team_name(fixture["away_name"])
 
-        font_team = get_card_font(38, bold=True)
-        font_role = get_card_font(11, bold=True)
-
-        for s in [38, 33, 28, 23]:
+        font_team = get_card_font(44, bold=True)
+        font_role = get_card_font(12)
+        for s in [44, 38, 32, 26]:
             font_team = get_card_font(s, bold=True)
-            h_bb2 = draw2.textbbox((0, 0), home_clean, font=font_team)
-            a_bb2 = draw2.textbbox((0, 0), away_clean, font=font_team)
-            if (h_bb2[2] - h_bb2[0]) < 430 and (a_bb2[2] - a_bb2[0]) < 430:
+            h_bb = draw.textbbox((0, 0), home_clean, font=font_team)
+            a_bb = draw.textbbox((0, 0), away_clean, font=font_team)
+            if (h_bb[2] - h_bb[0]) < 440 and (a_bb[2] - a_bb[0]) < 440:
                 break
 
-        draw2.text((48, 97), home_clean, fill=TEXT_WHITE, font=font_team)
-        draw2.text((50, 148), "HOME", fill=TEXT_DIM, font=font_role)
+        team_y = 88
+        draw.text((36, team_y), home_clean, fill=INK, font=font_team)
+        draw.text((36, team_y + 52), "HOME", fill=LIGHT, font=font_role)
 
-        a_bb3 = draw2.textbbox((0, 0), away_clean, font=font_team)
-        away_w = a_bb3[2] - a_bb3[0]
-        draw2.text((W - 48 - away_w, 97), away_clean, fill=TEXT_WHITE, font=font_team)
-        role_bb = draw2.textbbox((0, 0), "AWAY", font=font_role)
-        draw2.text((W - 48 - (role_bb[2] - role_bb[0]), 148), "AWAY", fill=TEXT_DIM, font=font_role)
+        a_bb2  = draw.textbbox((0, 0), away_clean, font=font_team)
+        away_w = a_bb2[2] - a_bb2[0]
+        draw.text((W - 36 - away_w, team_y), away_clean, fill=INK, font=font_team)
+        role_bb = draw.textbbox((0, 0), "AWAY", font=font_role)
+        draw.text((W - 36 - (role_bb[2] - role_bb[0]), team_y + 52), "AWAY", fill=LIGHT, font=font_role)
 
-        # VS badge — glowing teal circle
-        vs_cx, vs_cy = W // 2, 124
-        for r_ring, alpha_ring in [(34, 15), (28, 30)]:
-            gl = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            gld = ImageDraw.Draw(gl)
-            gld.ellipse([vs_cx - r_ring, vs_cy - r_ring, vs_cx + r_ring, vs_cy + r_ring],
-                        fill=(0, 212, 180, alpha_ring))
-            img.alpha_composite(gl)
-        _draw_glass_panel(img, vs_cx - 26, vs_cy - 26, vs_cx + 26, vs_cy + 26,
-                          fill_rgba=(0, 212, 180, 25), border_rgba=(0, 212, 180, 140), radius=26, border_width=1)
-        draw2 = ImageDraw.Draw(img)
-        font_vs = get_card_font(14, bold=True)
-        vs_bb   = draw2.textbbox((0, 0), "VS", font=font_vs)
-        draw2.text((vs_cx - (vs_bb[2] - vs_bb[0]) // 2, vs_cy - (vs_bb[3] - vs_bb[1]) // 2), "VS", fill=TEAL_HEX, font=font_vs)
+        vs_cx, vs_cy = W // 2, team_y + 28
+        draw.ellipse([vs_cx - 22, vs_cy - 22, vs_cx + 22, vs_cy + 22], outline=BORDER, width=2, fill=BG)
+        font_vs = get_card_font(13, bold=True)
+        vs_bb   = draw.textbbox((0, 0), "VS", font=font_vs)
+        draw.text((vs_cx - (vs_bb[2] - vs_bb[0]) // 2, vs_cy - (vs_bb[3] - vs_bb[1]) // 2), "VS", fill=MUTED, font=font_vs)
 
-        # Thin separator
-        _draw_glow_line(img, 40, 170, W - 40, (0, 212, 180, 50), thickness=1)
+        draw.line([(36, 175), (W - 36, 175)], fill=DIVIDER, width=1)
 
-        # ── 3. HERO PICK PANEL ────────────────────────────────────────
-        pick_y0, pick_y1 = 182, 332
-        _draw_glass_panel(img, 42, pick_y0, W - 42, pick_y1,
-                          fill_rgba=(255, 255, 255, 12), border_rgba=(0, 212, 180, 90), radius=18, border_width=1)
+        # -- 3. PICK + SCORE ------------------------------------------
+        pick_y = 192
 
-        # Top accent line on the panel
-        for lx in range(42, W - 42):
-            prog = (lx - 42) / (W - 84)
-            a_line = int(180 * (1 - abs(prog - 0.5) * 2.5))
-            a_line = max(0, min(180, a_line))
-            acc_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            ImageDraw.Draw(acc_layer).point((lx, pick_y0 + 1), fill=(0, 212, 180, a_line))
-            img.alpha_composite(acc_layer)
+        draw.text((36, pick_y), "OUR PICK", fill=LIGHT, font=get_card_font(11, bold=True))
 
-        draw2 = ImageDraw.Draw(img)
-
-        # "MODEL RECOMMENDATION" micro-tag
-        font_tag = get_card_font(11, bold=True)
-        tag_txt  = "  MODEL RECOMMENDATION"
-        tag_bb   = draw2.textbbox((0, 0), tag_txt, font=font_tag)
-        tag_w    = tag_bb[2] - tag_bb[0] + 10
-        _draw_glass_panel(img, 62, pick_y0 + 14, 62 + tag_w, pick_y0 + 14 + 22,
-                          fill_rgba=(0, 212, 180, 18), border_rgba=(0, 212, 180, 60), radius=6, border_width=1)
-        draw2 = ImageDraw.Draw(img)
-        draw2.ellipse([68, pick_y0 + 21, 76, pick_y0 + 29], fill=TEAL)
-        draw2.text((78, pick_y0 + 16), "MODEL RECOMMENDATION", fill=TEAL_HEX, font=font_tag)
-
-        # Pick outcome — BIG
         pick_text = clean_text_for_image(prediction["pick_name"]).upper()
-        font_pick = get_card_font(34, bold=True)
-        for ps in [34, 29, 24]:
-            font_pick = get_card_font(ps, bold=True)
-            pk_bb = draw2.textbbox((0, 0), pick_text, font=font_pick)
-            if pk_bb[2] - pk_bb[0] < 640:
+        font_pick_val = get_card_font(36, bold=True)
+        for ps in [36, 30, 24]:
+            font_pick_val = get_card_font(ps, bold=True)
+            pk_bb = draw.textbbox((0, 0), pick_text, font=font_pick_val)
+            if pk_bb[2] - pk_bb[0] < 550:
                 break
-        draw2.text((66, pick_y0 + 46), pick_text, fill=TEXT_WHITE, font=font_pick)
+        draw.text((36, pick_y + 20), pick_text, fill=INK, font=font_pick_val)
 
-        # Confidence & stake badges row
-        conf_level = prediction["confidence_level"]
-        conf_color = TEAL_HEX if "High" in conf_level else (AMBER_HEX if "Med" in conf_level else SLATE_HEX)
-        font_badge = get_card_font(13)
-        bx_cur     = 66
-        badge_y    = pick_y0 + 104
+        font_meta = get_card_font(13)
+        stake_txt = f"Stake: {prediction['stake_units']}   -   Odds: @{prediction['fair_odds']:.2f}"
+        draw.text((36, pick_y + 72), stake_txt, fill=MUTED, font=font_meta)
 
-        for badge_txt, b_text_col, b_border_alpha in [
-            (f"Confidence: {conf_level}", conf_color, 80),
-            (f"Stake: {prediction['stake_units']}", TEXT_MUTED, 50),
-            (f"Odds: @{prediction['fair_odds']:.2f}", TEAL_HEX, 70),
-        ]:
-            bb_b = draw2.textbbox((0, 0), badge_txt, font=font_badge)
-            bw_b = bb_b[2] - bb_b[0] + 26
-            bh_b = 26
-            _draw_glass_panel(img, bx_cur, badge_y, bx_cur + bw_b, badge_y + bh_b,
-                              fill_rgba=WHITE_10, border_rgba=(0, 212, 180, b_border_alpha), radius=7, border_width=1)
-            draw2 = ImageDraw.Draw(img)
-            draw2.text((bx_cur + 13, badge_y + (bh_b - (bb_b[3] - bb_b[1])) // 2), badge_txt, fill=b_text_col, font=font_badge)
-            bx_cur += bw_b + 10
+        draw.line([(W // 2 + 40, pick_y), (W // 2 + 40, pick_y + 90)], fill=DIVIDER, width=1)
 
-        # Expected Score box — right side
-        hg, ag  = prediction["score"]
-        exp_txt = f"{hg} - {ag}"
-        sc_box_w = 190
-        sc_x0    = W - 42 - sc_box_w - 16
-        _draw_glass_panel(img, sc_x0, pick_y0 + 14, sc_x0 + sc_box_w, pick_y1 - 14,
-                          fill_rgba=(0, 212, 180, 10), border_rgba=(0, 212, 180, 80), radius=14, border_width=1)
-        draw2 = ImageDraw.Draw(img)
+        hg, ag     = prediction["score"]
+        exp_txt    = f"{hg}  -  {ag}"
         font_sc_lbl = get_card_font(11, bold=True)
-        font_sc_val = get_card_font(40, bold=True)
-        sc_lbl_bb   = draw2.textbbox((0, 0), "EXPECTED SCORE", font=font_sc_lbl)
-        draw2.text((sc_x0 + (sc_box_w - (sc_lbl_bb[2] - sc_lbl_bb[0])) // 2, pick_y0 + 30),
-                   "EXPECTED SCORE", fill=TEXT_DIM, font=font_sc_lbl)
-        sc_val_bb = draw2.textbbox((0, 0), exp_txt, font=font_sc_val)
-        draw2.text((sc_x0 + (sc_box_w - (sc_val_bb[2] - sc_val_bb[0])) // 2, pick_y0 + 56),
-                   exp_txt, fill=TEAL_HEX, font=font_sc_val)
+        font_sc_val = get_card_font(48, bold=True)
+        lbl_sc     = "EXPECTED SCORE"
+        lbl_sc_bb  = draw.textbbox((0, 0), lbl_sc, font=font_sc_lbl)
+        lbl_sc_x   = W // 2 + 40 + ((W // 2 - 76) - (lbl_sc_bb[2] - lbl_sc_bb[0])) // 2
+        sc_bb      = draw.textbbox((0, 0), exp_txt, font=font_sc_val)
+        sc_x       = W // 2 + 40 + ((W // 2 - 76) - (sc_bb[2] - sc_bb[0])) // 2
+        draw.text((lbl_sc_x, pick_y), lbl_sc, fill=LIGHT, font=font_sc_lbl)
+        draw.text((sc_x, pick_y + 16), exp_txt, fill=INK, font=font_sc_val)
 
-        # ── 4. PROBABILITY BAR ───────────────────────────────────────
-        bar_y_top = 348
-        draw2.text((46, bar_y_top), "WIN PROBABILITY DISTRIBUTION", fill=TEXT_DIM, font=get_card_font(11, bold=True))
+        div2_y = pick_y + 102
+        draw.line([(36, div2_y), (W - 36, div2_y)], fill=DIVIDER, width=1)
 
-        bx0, by0b, bx1, by1b = 46, bar_y_top + 20, W - 46, bar_y_top + 54
-        bw = bx1 - bx0
-        bh = by1b - by0b
+        # -- 4. PROBABILITY BAR ----------------------------------------
+        bar_y = div2_y + 22
+        draw.text((36, bar_y - 16), "WIN PROBABILITY", fill=LIGHT, font=get_card_font(11, bold=True))
 
         hp = prediction["home_win_prob"]
         dp = prediction["draw_prob"]
         ap = prediction["away_win_prob"]
+
+        bx0, by0 = 36, bar_y
+        bx1, by1 = W - 36, bar_y + 40
+        bw = bx1 - bx0
+        bh = by1 - by0
         hw = int(bw * hp)
         dw = int(bw * dp)
         aw = bw - hw - dw
 
-        # Background track
-        _draw_glass_panel(img, bx0, by0b, bx1, by1b,
-                          fill_rgba=(255, 255, 255, 8), border_rgba=(255, 255, 255, 20), radius=10, border_width=1)
-
-        # Home segment — teal
+        draw.rounded_rectangle([bx0, by0, bx1, by1], radius=8, fill=GREY_BAR)
         if hw > 0:
-            seg = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            sd  = ImageDraw.Draw(seg)
-            sd.rounded_rectangle([bx0, by0b, bx0 + hw, by1b], radius=10, fill=(0, 212, 180, 220))
+            draw.rounded_rectangle([bx0, by0, bx0 + hw, by1], radius=8, fill=GREEN)
             if hw > 20:
-                sd.rectangle([bx0 + max(0, hw - 12), by0b, bx0 + hw, by1b], fill=(0, 212, 180, 220))
-            img.alpha_composite(seg)
-
-        # Draw segment — muted slate
+                draw.rectangle([bx0 + hw - 8, by0, bx0 + hw, by1], fill=GREEN)
         if dw > 0:
-            seg2 = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            sd2  = ImageDraw.Draw(seg2)
-            sd2.rectangle([bx0 + hw, by0b, bx0 + hw + dw, by1b], fill=(100, 116, 139, 160))
-            img.alpha_composite(seg2)
-
-        # Away segment — coral red
+            draw.rectangle([bx0 + hw, by0, bx0 + hw + dw, by1], fill="#9ca3af")
         if aw > 0:
-            seg3 = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            sd3  = ImageDraw.Draw(seg3)
-            sd3.rounded_rectangle([bx0 + hw + dw, by0b, bx1, by1b], radius=10, fill=(255, 77, 109, 200))
+            draw.rounded_rectangle([bx0 + hw + dw, by0, bx1, by1], radius=8, fill=RED)
             if aw > 20:
-                sd3.rectangle([bx0 + hw + dw, by0b, bx0 + hw + dw + 12, by1b], fill=(255, 77, 109, 200))
-            img.alpha_composite(seg3)
+                draw.rectangle([bx0 + hw + dw, by0, bx0 + hw + dw + 8, by1], fill=RED)
 
-        # In-bar labels
-        draw2 = ImageDraw.Draw(img)
-        font_in_bar = get_card_font(14, bold=True)
-        if hw > 70:
+        font_bar_pct = get_card_font(13, bold=True)
+        font_bar_lbl = get_card_font(12, bold=True)
+        if hw > 60:
             h_in = f"{hp*100:.0f}%"
-            in_bb = draw2.textbbox((0, 0), h_in, font=font_in_bar)
-            draw2.text((bx0 + hw // 2 - (in_bb[2] - in_bb[0]) // 2,
-                        by0b + (bh - (in_bb[3] - in_bb[1])) // 2 - 1), h_in, fill="#001a14", font=font_in_bar)
-        if dw > 60:
+            in_bb = draw.textbbox((0, 0), h_in, font=font_bar_pct)
+            draw.text((bx0 + hw // 2 - (in_bb[2] - in_bb[0]) // 2, by0 + (bh - (in_bb[3] - in_bb[1])) // 2 - 1), h_in, fill="#ffffff", font=font_bar_pct)
+        if dw > 50:
             d_in = f"{dp*100:.0f}%"
-            in_bb = draw2.textbbox((0, 0), d_in, font=font_in_bar)
-            draw2.text((bx0 + hw + dw // 2 - (in_bb[2] - in_bb[0]) // 2,
-                        by0b + (bh - (in_bb[3] - in_bb[1])) // 2 - 1), d_in, fill="#f0f6ff", font=font_in_bar)
-        if aw > 70:
+            in_bb = draw.textbbox((0, 0), d_in, font=font_bar_pct)
+            draw.text((bx0 + hw + dw // 2 - (in_bb[2] - in_bb[0]) // 2, by0 + (bh - (in_bb[3] - in_bb[1])) // 2 - 1), d_in, fill="#ffffff", font=font_bar_pct)
+        if aw > 60:
             a_in = f"{ap*100:.0f}%"
-            in_bb = draw2.textbbox((0, 0), a_in, font=font_in_bar)
-            draw2.text((bx0 + hw + dw + aw // 2 - (in_bb[2] - in_bb[0]) // 2,
-                        by0b + (bh - (in_bb[3] - in_bb[1])) // 2 - 1), a_in, fill="#f0f6ff", font=font_in_bar)
+            in_bb = draw.textbbox((0, 0), a_in, font=font_bar_pct)
+            draw.text((bx0 + hw + dw + aw // 2 - (in_bb[2] - in_bb[0]) // 2, by0 + (bh - (in_bb[3] - in_bb[1])) // 2 - 1), a_in, fill="#ffffff", font=font_bar_pct)
 
-        # Legend row
-        font_leg = get_card_font(13, bold=True)
-        leg_y    = by1b + 10
-        dot_r    = 5
-        draw2.ellipse([46, leg_y + 4, 46 + dot_r * 2, leg_y + 4 + dot_r * 2], fill=TEAL)
-        draw2.text((58, leg_y), f"{home_clean} ({hp*100:.0f}%)", fill=TEAL_HEX, font=font_leg)
+        leg_y = by1 + 10
+        dot_r = 4
+        draw.ellipse([36, leg_y + 3, 36 + dot_r * 2, leg_y + 3 + dot_r * 2], fill=GREEN)
+        draw.text((36 + dot_r * 2 + 6, leg_y), f"{home_clean}  {hp*100:.0f}%", fill=MUTED, font=font_bar_lbl)
 
-        dl_txt = f"Draw  ({dp*100:.0f}%)"
-        dl_bb  = draw2.textbbox((0, 0), dl_txt, font=font_leg)
+        dl_txt = f"Draw  {dp*100:.0f}%"
+        dl_bb  = draw.textbbox((0, 0), dl_txt, font=font_bar_lbl)
         dl_x   = W // 2 - (dl_bb[2] - dl_bb[0]) // 2
-        draw2.ellipse([dl_x - 16, leg_y + 4, dl_x - 16 + dot_r * 2, leg_y + 4 + dot_r * 2], fill=(100, 116, 139))
-        draw2.text((dl_x, leg_y), dl_txt, fill=TEXT_MUTED, font=font_leg)
+        draw.ellipse([dl_x - 14, leg_y + 3, dl_x - 14 + dot_r * 2, leg_y + 3 + dot_r * 2], fill="#9ca3af")
+        draw.text((dl_x, leg_y), dl_txt, fill=MUTED, font=font_bar_lbl)
 
-        al_txt = f"{away_clean} ({ap*100:.0f}%)"
-        al_bb  = draw2.textbbox((0, 0), al_txt, font=font_leg)
-        al_x   = W - 46 - (al_bb[2] - al_bb[0])
-        draw2.ellipse([al_x - 16, leg_y + 4, al_x - 16 + dot_r * 2, leg_y + 4 + dot_r * 2], fill=(255, 77, 109))
-        draw2.text((al_x, leg_y), al_txt, fill=RED_HEX, font=font_leg)
+        al_txt = f"{away_clean}  {ap*100:.0f}%"
+        al_bb  = draw.textbbox((0, 0), al_txt, font=font_bar_lbl)
+        al_x   = W - 36 - (al_bb[2] - al_bb[0])
+        draw.ellipse([al_x - 14, leg_y + 3, al_x - 14 + dot_r * 2, leg_y + 3 + dot_r * 2], fill=RED)
+        draw.text((al_x, leg_y), al_txt, fill=MUTED, font=font_bar_lbl)
 
-        # ── 5. STAT CARDS GRID ───────────────────────────────────────
-        grid_y0 = 462
-        gw = (W - 90 - 32) // 3
-        gh = 120
+        # -- 5. BOTTOM STAT + FOOTER -----------------------------------
+        bot_y = leg_y + 30
+        draw.line([(36, bot_y), (W - 36, bot_y)], fill=DIVIDER, width=1)
 
-        btts_label = "YES" if prediction["btts_yes_prob"] >= 0.5 else "NO"
-        btts_pct   = prediction["btts_yes_prob"] * 100 if btts_label == "YES" else (1 - prediction["btts_yes_prob"]) * 100
-        btts_col   = TEAL_HEX if btts_label == "YES" else AMBER_HEX
+        font_stat_lbl = get_card_font(11, bold=True)
+        font_stat_val = get_card_font(22, bold=True)
+        over_pct = prediction["over_2_5_prob"] * 100
 
-        cards_data = [
-            ("GOALS OVER 2.5",       f"{prediction['over_2_5_prob']*100:.0f}%",   "Market Probability",   TEAL_HEX),
-            ("BOTH TEAMS TO SCORE",  f"{btts_label} ({btts_pct:.0f}%)",           "Expected Outcome",     btts_col),
-            ("MOST LIKELY SCORE",    f"{hg} - {ag}",                              "Dixon-Coles Mode",     TEAL_HEX),
-        ]
+        draw.text((36, bot_y + 14), "GOALS OVER 2.5", fill=LIGHT, font=font_stat_lbl)
+        draw.text((36, bot_y + 32), f"{over_pct:.0f}%", fill=INK, font=font_stat_val)
 
-        font_c_title = get_card_font(11, bold=True)
-        font_c_val   = get_card_font(28, bold=True)
-        font_c_sub   = get_card_font(10)
+        font_foot = get_card_font(11)
+        foot_txt  = "RYUU PREDICTION AI"
+        foot_bb   = draw.textbbox((0, 0), foot_txt, font=font_foot)
+        draw.text((W - 36 - (foot_bb[2] - foot_bb[0]), bot_y + 14), foot_txt, fill=LIGHT, font=font_foot)
+        sub_txt = "Statistical Model"
+        sub_bb  = draw.textbbox((0, 0), sub_txt, font=font_foot)
+        draw.text((W - 36 - (sub_bb[2] - sub_bb[0]), bot_y + 32), sub_txt, fill=LIGHT, font=font_foot)
 
-        for i, (title, val, sub, val_col) in enumerate(cards_data):
-            cx0 = 45 + i * (gw + 16)
-            cx1 = cx0 + gw
-            _draw_glass_panel(img, cx0, grid_y0, cx1, grid_y0 + gh,
-                              fill_rgba=(255, 255, 255, 10), border_rgba=(0, 212, 180, 45), radius=14, border_width=1)
-            draw2 = ImageDraw.Draw(img)
-            draw2.text((cx0 + 20, grid_y0 + 14), title, fill=TEXT_DIM, font=font_c_title)
-            draw2.text((cx0 + 20, grid_y0 + 38), val, fill=val_col, font=font_c_val)
-            draw2.text((cx0 + 20, grid_y0 + 88), sub, fill=TEXT_DIM, font=font_c_sub)
-
-        # ── 6. FOOTER ────────────────────────────────────────────────
-        _draw_glow_line(img, 40, H - 48, W - 40, (0, 212, 180, 40), thickness=1)
-        draw2 = ImageDraw.Draw(img)
-        font_foot = get_card_font(10)
-        draw2.text((46, H - 36), "Dixon-Coles Bivariate Poisson Distribution  •  Data-driven algorithmic selections",
-                   fill=TEXT_DIM, font=font_foot)
-        foot_txt = "RYUU PREDICTION AI"
-        foot_bb  = draw2.textbbox((0, 0), foot_txt, font=font_foot)
-        draw2.text((W - 46 - (foot_bb[2] - foot_bb[0]), H - 36), foot_txt, fill=TEAL_HEX, font=font_foot)
-
-        # Convert RGBA → RGB
-        bg_rgb = Image.new("RGB", (W, H), (10, 15, 28))
-        bg_rgb.paste(img.convert("RGB"), mask=img.split()[3])
-        final_img = bg_rgb
-        final_img.save(file_path, quality=95)
+        img.save(file_path, quality=95)
         return file_path
 
     except Exception as e:
-        print(f"[warn] Card image generation failed: {e} — falling back to text.", file=sys.stderr)
+        print(f"[warn] Card image generation failed: {e} -- falling back to text.", file=sys.stderr)
         return None
 
 

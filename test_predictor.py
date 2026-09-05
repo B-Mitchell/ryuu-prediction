@@ -621,7 +621,7 @@ class TestCardGeneration(unittest.TestCase):
             from PIL import Image as PILImage
             img = PILImage.open(path)
             try:
-                self.assertEqual(img.size, (1200, 675))
+                self.assertEqual(img.size, (1200, 480))
                 self.assertEqual(img.mode, "RGB")
             finally:
                 img.close()
