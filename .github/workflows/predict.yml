@@ -34,8 +34,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
           # Set DAYS_AHEAD in GitHub Actions → Settings → Variables
-          # 7 = normal season operation (predict next week's fixtures)
-          DAYS_AHEAD: ${{ vars.DAYS_AHEAD || '7' }}
+          # 2 = 48-hour matchday window (predicts today & tomorrow's fixtures)
+          DAYS_AHEAD: ${{ vars.DAYS_AHEAD || '2' }}
         run: python predictor.py
 
       - name: Save duplicate-prevention state & prediction history

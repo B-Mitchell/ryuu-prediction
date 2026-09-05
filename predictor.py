@@ -49,7 +49,7 @@ COMPETITIONS = {
     "CL":  "Champions League",
 }
 
-DAYS_AHEAD       = int(os.environ.get("DAYS_AHEAD", 7))  # configurable via GitHub Actions Variable
+DAYS_AHEAD       = int(os.environ.get("DAYS_AHEAD", 2))  # configurable via GitHub Actions Variable (default: 2 days)
 LOOKBACK_MATCHES = 10
 MAX_GOALS        = 6
 FORM_DECAY_RATE  = 0.005
@@ -79,37 +79,8 @@ API_DELAY_S = 6   # free tier: ~10 req/min — 6s keeps us safely under
 
 
 # ----------------------------------------------------------------------
-# Season Hype Announcements — Randomized Dictionary
+# Team Name Normalization
 # ----------------------------------------------------------------------
-HYPE_HEADER_PREFIXES = [
-    "🚨 CLUB FOOTBALL IS BACK!",
-    "🔥 THE WAIT IS OVER!",
-    "⚡ COUNTDOWN ALERT!",
-    "🏆 SEASON KICKOFF INCOMING!",
-    "🎉 FOOTBALL RETURNS!",
-    "💪 IT'S GAME TIME!",
-    "🔔 MARK YOUR CALENDARS!",
-    "🎊 THE BEAUTIFUL GAME RETURNS!",
-]
-
-HYPE_ACTION_SLOGANS = [
-    "{comp} let's go! 🚀",
-    "Time to cook — data-driven picks are coming! 📊",
-    "Lock in your picks and let's get this bag! 💰",
-    "No vibes, pure statistical firepower! 🔮",
-    "Get your betslips ready — we are back in action! 🎯",
-    "The journey starts now — follow every prediction! 🏆",
-    "{comp} is back and so are we! 🔥",
-    "New season, new opportunities. Let's cook! 📈",
-]
-
-HYPE_COUNTDOWN_PHRASES = {
-    4: "Only 4 DAYS left until kickoff!",
-    3: "Just 3 DAYS to go before Matchday 1!",
-    2: "2 DAYS AWAY! Get ready!",
-    1: "TOMORROW IS THE DAY! ⚽",
-    0: "MATCHDAY 1 IS TODAY! LET'S GO! 🔥",
-}
 
 # Common long team name overrides for cleaner display
 TEAM_NAME_OVERRIDES = {
@@ -735,73 +706,6 @@ def format_accuracy_summary(stats: dict) -> str:
 
 
 # ----------------------------------------------------------------------
-# Season Countdown Hype Announcements
-# ----------------------------------------------------------------------
-def generate_season_hype_message(comp_name: str, days_left: int, first_match_date_str: str) -> str:
-    header      = random.choice(HYPE_HEADER_PREFIXES)
-    raw_slogan  = random.choice(HYPE_ACTION_SLOGANS)
-    slogan      = raw_slogan.replace("{comp}", comp_name)
-    time_phrase = HYPE_COUNTDOWN_PHRASES.get(days_left, f"Starts in {days_left} days!")
-    return (
-        f"<b>{header}</b>\n\n"
-        f"⚽ <b>{comp_name}</b>\n"
-        f"📅 Opening Match: <b>{first_match_date_str}</b>\n"
-        f"⏳ Countdown: <b>{time_phrase}</b>\n\n"
-        f"<i>{slogan}</i>"
-    )
-
-
-def check_and_send_season_announcements(fixtures: list, sent_data: dict) -> None:
-    """
-    For each competition in the upcoming fixtures, if the first match is
-    1–4 days away, send a randomised hype announcement (once per day per competition).
-
-    NOTE: We skip day 0 from the announcement here — on matchday itself the
-    prediction message is the announcement. We also skip fixtures happening in
-    the next 24 hours (they are regular weekly predictions, not season openers).
-    Announcement keys are stored separately from fixture IDs to avoid type clashes.
-    """
-    if not fixtures:
-        return
-
-    by_comp: dict[str, list] = {}
-    for f in fixtures:
-        by_comp.setdefault(f.get("competition_code", "GENERIC"), []).append(f)
-
-    now        = datetime.now(timezone.utc)
-    today_date = now.date()
-
-    for code, comp_fixtures in by_comp.items():
-        comp_fixtures.sort(key=lambda x: x["utc_date"])
-        earliest = comp_fixtures[0]
-        try:
-            match_dt   = datetime.fromisoformat(earliest["utc_date"].replace("Z", "+00:00"))
-            match_date = match_dt.date()
-            days_left  = (match_date - today_date).days
-        except (ValueError, TypeError):
-            continue
-
-        # Only announce 1–4 days before the first fixture of a competition.
-        # Skip 0 (matchday — predictions serve as the announcement)
-        # Skip if the match is already today or tomorrow within the normal
-        # prediction window (it will appear as a regular prediction card).
-        if 1 <= days_left <= 4:
-            ann_key = f"announce_{code}_{match_date.isoformat()}_d{days_left}"
-            if not is_announcement_sent(ann_key, sent_data):
-                date_formatted = match_dt.strftime("%a %d %b, %H:%M UTC")
-                hype_msg = generate_season_hype_message(earliest["competition"], days_left, date_formatted)
-
-                print("=" * 40)
-                print(f"[Season Announcement] {earliest['competition']} — {days_left} day(s) to kickoff")
-                print(hype_msg)
-                print("=" * 40)
-
-                if send_telegram_message(hype_msg):
-                    mark_announcement_sent(ann_key, sent_data)
-                time.sleep(1)
-
-
-# ----------------------------------------------------------------------
 # Main Execution
 # ----------------------------------------------------------------------
 def run_once(days_ahead: int = None) -> None:
@@ -828,34 +732,18 @@ def run_once(days_ahead: int = None) -> None:
         if summary_msg:
             send_telegram_message(summary_msg)
 
-    # Step 2 — Fetch fixtures using WIDER 30-day window once.
-    # We reuse this single list for both:
-    #   (a) season-start countdown announcements (fixtures 1-4 days away)
-    #   (b) weekly predictions (fixtures within days_ahead window)
-    # This halves the number of API calls compared to fetching twice.
-    announcement_window = max(30, days_ahead)
-    print(f"Fetching upcoming fixtures (next {announcement_window} days)...")
-    all_fixtures = get_upcoming_fixtures(days_ahead=announcement_window)
+    # Step 2 — Fetch upcoming fixtures (focused lookahead window)
+    print(f"Fetching upcoming fixtures (next {days_ahead} days)...")
+    fixtures = get_upcoming_fixtures(days_ahead=days_ahead)
 
-    # Step 3 — Season countdown announcements (reuse already-fetched fixture list)
-    print("Checking for upcoming season start announcements...")
-    check_and_send_season_announcements(all_fixtures, sent_data)
-    save_sent_fixtures(sent_data)  # persist announcement keys immediately
-
-    # Step 4 — Filter to only fixtures within the prediction window
-    now          = datetime.now(timezone.utc)
-    cutoff       = now + timedelta(days=days_ahead)
-    fixtures     = [
-        f for f in all_fixtures
-        if datetime.fromisoformat(f["utc_date"].replace("Z", "+00:00")) <= cutoff
-    ]
-    print(f"Fixtures within {days_ahead}-day prediction window: {len(fixtures)}")
+    # Always persist state here regardless of what happens next
+    save_sent_fixtures(sent_data)
 
     if not fixtures:
         print(f"No upcoming fixtures found in next {days_ahead} days.")
         return
 
-    # Step 5 — Filter to only new fixtures not yet sent
+    # Step 3 — Filter to only new fixtures
     new_fixtures = [f for f in fixtures if not is_fixture_sent(f["id"], sent_data)]
     skipped      = len(fixtures) - len(new_fixtures)
     if skipped:

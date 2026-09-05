@@ -516,94 +516,44 @@ class TestPredictionHistory(unittest.TestCase):
 
 
 # ═════════════════════════════════════════════════════════════════════════════
-# SECTION 5 — Hype Announcements
+# SECTION 5 — Matchday Lookahead Configuration (Spam & Alert Prevention)
 # ═════════════════════════════════════════════════════════════════════════════
-class TestSeasonAnnouncements(unittest.TestCase):
+class TestLookaheadConfiguration(unittest.TestCase):
 
-    def _make_fixture(self, days_offset: int, code: str = "PL", comp: str = "Premier League") -> dict:
-        """
-        Creates a SYNTHETIC test fixture at today + days_offset.
-        These dates are fake and used only to exercise countdown logic.
-        They do NOT represent real fixtures from the API.
-        """
-        utc_date = (datetime.now(timezone.utc) + timedelta(days=days_offset)).strftime("%Y-%m-%dT19:00:00Z")
-        return {
-            "id": 10000 + days_offset,
-            "competition": comp,
-            "competition_code": code,
-            "utc_date": utc_date,
-            "home_name": "Test Home FC",   # clearly fake team names
-            "away_name": "Test Away FC",
-        }
+    def test_default_days_ahead_is_two(self):
+        """Default lookahead must be 2 days to prevent channel spam and forgotten tips."""
+        self.assertEqual(predictor.DAYS_AHEAD, 2)
 
-    def test_multiple_leagues_each_get_own_announcement(self):
-        fixtures = [self._make_fixture(2, "PL", "Premier League"), self._make_fixture(2, "PD", "La Liga")]
-        state    = {"fixtures": {}, "announcements": {}}
+    def test_get_upcoming_fixtures_uses_days_ahead(self):
+        """Verify get_upcoming_fixtures respects the days_ahead parameter."""
+        captured_params = []
 
-        sent_msgs = []
-        with unittest.mock.patch("predictor.send_telegram_message", side_effect=lambda msg: (sent_msgs.append(msg) or True)):
-            predictor.check_and_send_season_announcements(fixtures, state)
+        def mock_api_get(path, params=None):
+            captured_params.append(params)
+            return {"matches": []}
 
-        self.assertEqual(len(sent_msgs), 2)
-        leagues = {msg for msg in sent_msgs}
-        self.assertTrue(any("Premier League" in m for m in leagues))
-        self.assertTrue(any("La Liga" in m for m in leagues))
+        with unittest.mock.patch("predictor.api_get", side_effect=mock_api_get):
+            with unittest.mock.patch("predictor.API_DELAY_S", 0):
+                predictor.get_upcoming_fixtures(days_ahead=2)
 
-    def test_hype_message_contains_comp_name(self):
-        msg = predictor.generate_season_hype_message("La Liga", 3, "Fri 15 Aug, 19:00 UTC")
-        self.assertIn("La Liga", msg)
+        self.assertTrue(len(captured_params) > 0)
+        now = datetime.now(timezone.utc)
+        expected_date_to = (now + timedelta(days=2)).strftime("%Y-%m-%d")
+        expected_date_from = now.strftime("%Y-%m-%d")
 
-    def test_no_hardcoded_premier_league_in_generic_slogans(self):
-        for _ in range(20):
-            msg = predictor.generate_season_hype_message("Bundesliga", 2, "Fri 15 Aug, 14:00 UTC")
-            self.assertNotIn("Premier League", msg)
+        for p in captured_params:
+            self.assertEqual(p["dateFrom"], expected_date_from)
+            self.assertEqual(p["dateTo"], expected_date_to)
+            self.assertEqual(p["status"], "SCHEDULED")
 
-    def test_countdown_phrase_correct(self):
-        for days_left, expected_fragment in [(4, "4 DAYS"), (1, "TOMORROW"), (0, "TODAY")]:
-            msg = predictor.generate_season_hype_message("Serie A", days_left, "Sat 16 Aug, 14:00 UTC")
-            self.assertIn(expected_fragment, msg)
+    def test_league_hype_alerts_removed(self):
+        """Verify starting league hype alert functions and variables are no longer present."""
+        self.assertFalse(hasattr(predictor, "generate_season_hype_message"))
+        self.assertFalse(hasattr(predictor, "check_and_send_season_announcements"))
+        self.assertFalse(hasattr(predictor, "HYPE_HEADER_PREFIXES"))
+        self.assertFalse(hasattr(predictor, "HYPE_ACTION_SLOGANS"))
+        self.assertFalse(hasattr(predictor, "HYPE_COUNTDOWN_PHRASES"))
 
-    def test_announcement_sent_only_once(self):
-        fixtures = [self._make_fixture(3)]
-        state    = {"fixtures": {}, "announcements": {}}
-
-        sent_msgs = []
-        # NOTE: send_telegram_message is mocked — no real messages are sent.
-        #       The dates printed below are synthetic test data, not real fixtures.
-        with unittest.mock.patch("predictor.send_telegram_message", side_effect=lambda msg: (sent_msgs.append(msg) or True)):
-            predictor.check_and_send_season_announcements(fixtures, state)
-            predictor.check_and_send_season_announcements(fixtures, state)
-
-        self.assertEqual(len(sent_msgs), 1, "Announcement should be sent only once")
-
-    def test_no_announcement_beyond_4_days(self):
-        fixtures = [self._make_fixture(5)]
-        state    = {"fixtures": {}, "announcements": {}}
-
-        with unittest.mock.patch("predictor.send_telegram_message") as mock_send:
-            predictor.check_and_send_season_announcements(fixtures, state)
-        mock_send.assert_not_called()
-
-    def test_matchday_0_no_announcement(self):
-        """On matchday itself predictions serve as the announcement — no hype message."""
-        fixtures = [self._make_fixture(0)]
-        state    = {"fixtures": {}, "announcements": {}}
-
-        with unittest.mock.patch("predictor.send_telegram_message") as mock_send:
-            predictor.check_and_send_season_announcements(fixtures, state)
-        mock_send.assert_not_called()
-
-    def test_announcement_fires_on_day_1(self):
-        """Day 1 (tomorrow) is the earliest valid announcement day."""
-        fixtures = [self._make_fixture(1)]
-        state    = {"fixtures": {}, "announcements": {}}
-
-        sent_msgs = []
-        with unittest.mock.patch("predictor.send_telegram_message", side_effect=lambda msg: (sent_msgs.append(msg) or True)):
-            predictor.check_and_send_season_announcements(fixtures, state)
-
-        self.assertEqual(len(sent_msgs), 1)
-        self.assertIn("TOMORROW", sent_msgs[0])
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -811,7 +761,7 @@ def main():
         loader.loadTestsFromTestCase(TestSentFixtures),
         loader.loadTestsFromTestCase(TestPredictionModel),
         loader.loadTestsFromTestCase(TestPredictionHistory),
-        loader.loadTestsFromTestCase(TestSeasonAnnouncements),
+        loader.loadTestsFromTestCase(TestLookaheadConfiguration),
         loader.loadTestsFromTestCase(TestMessageFormatting),
         loader.loadTestsFromTestCase(TestCardGeneration),
     ]
