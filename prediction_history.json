@@ -2832,11 +2832,14 @@
     "over_2_5_prob": 0.5507234608500376,
     "btts_yes_prob": 0.5890431859558577,
     "created_at": "2026-08-27T19:01:22.842663+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      0
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559696,
@@ -2887,11 +2890,14 @@
     "over_2_5_prob": 0.8334713258229544,
     "btts_yes_prob": 0.6769703125569008,
     "created_at": "2026-08-28T20:09:03.238382+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      2
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564667,
@@ -2913,11 +2919,14 @@
     "over_2_5_prob": 0.3738194379212722,
     "btts_yes_prob": 0.3702337315437182,
     "created_at": "2026-08-28T20:09:18.126120+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": true
   },
   {
     "fixture_id": 565791,
@@ -2939,11 +2948,14 @@
     "over_2_5_prob": 0.6763392698501145,
     "btts_yes_prob": 0.4968723423886158,
     "created_at": "2026-08-28T20:09:32.895494+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      4,
+      1
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558609,
@@ -2965,11 +2977,14 @@
     "over_2_5_prob": 0.4368569855564308,
     "btts_yes_prob": 0.2340988524779798,
     "created_at": "2026-08-28T20:09:47.675925+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      4
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559699,
@@ -3020,11 +3035,14 @@
     "over_2_5_prob": 0.9636892156028286,
     "btts_yes_prob": 0.9266287574311788,
     "created_at": "2026-08-28T20:10:20.337537+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      2
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560571,
