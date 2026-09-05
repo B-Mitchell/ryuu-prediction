@@ -634,51 +634,51 @@ def draw_card_pill(
 
 
 def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
-    """Generates a high-definition 1200×675 modern match preview card PNG."""
+    """Generates a high-definition 1200×675 modern match preview card PNG in vibrant Emerald & Gold theme."""
     try:
         os.makedirs(MATCH_CARDS_DIR, exist_ok=True)
         file_path = os.path.join(MATCH_CARDS_DIR, f"card_{fixture['id']}.png")
 
         W, H = 1200, 675
 
-        # Base dark background with ambient glow
-        img = Image.new("RGBA", (W, H), color="#080c14")
+        # ── Base background: Rich dark obsidian with friendly emerald & amber glows ──
+        img = Image.new("RGBA", (W, H), color="#0c1017")
         overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         ov_draw = ImageDraw.Draw(overlay)
 
-        # Cyan top-left soft radial glow
-        for r in range(280, 0, -20):
-            alpha = int(14 * (1 - r / 280))
-            ov_draw.ellipse([-80 - r, -80 - r, 320 + r, 240 + r], fill=(14, 165, 233, alpha))
+        # Soft emerald/mint glow in top-left (football pitch / lively winning vibe)
+        for r in range(300, 0, -20):
+            alpha = int(18 * (1 - r / 300))
+            ov_draw.ellipse([-100 - r, -100 - r, 340 + r, 240 + r], fill=(16, 185, 129, alpha))
 
-        # Indigo bottom-right soft radial glow
+        # Warm golden/amber glow in bottom-right
         for r in range(320, 0, -25):
             alpha = int(16 * (1 - r / 320))
-            ov_draw.ellipse([W - 320 - r, H - 240 - r, W + 100 + r, H + 100 + r], fill=(99, 102, 241, alpha))
+            ov_draw.ellipse([W - 320 - r, H - 240 - r, W + 100 + r, H + 100 + r], fill=(245, 158, 11, alpha))
 
         img = Image.alpha_composite(img, overlay)
         draw = ImageDraw.Draw(img)
 
         # Outer card container border
-        draw.rounded_rectangle([16, 16, W - 16, H - 16], radius=24, outline="#1e293b", width=2)
+        draw.rounded_rectangle([16, 16, W - 16, H - 16], radius=24, outline="#1f2d3d", width=2)
 
         # ── 1. HEADER SECTION ──────────────────────────────────────────
         comp_text = clean_text_for_image(fixture.get("competition", "COMPETITION")).upper()
         font_comp = get_card_font(14, bold=True)
-        draw_card_pill(draw, 45, 38, comp_text, font_comp, text_color="#38bdf8", bg_color="#0f1f38", border_color="#0284c7", dot_color="#38bdf8", radius=10)
+        draw_card_pill(draw, 45, 38, comp_text, font_comp, text_color="#34d399", bg_color="#0d231e", border_color="#059669", dot_color="#10b981", radius=10)
 
         font_engine = get_card_font(13)
         eng_txt = "RYUU PREDICTION AI • STATISTICAL MODEL"
         eng_bb = draw.textbbox((0, 0), eng_txt, font=font_engine)
         eng_w = eng_bb[2] - eng_bb[0]
-        draw_card_pill(draw, W // 2 - eng_w // 2 - 18, 38, eng_txt, font_engine, text_color="#94a3b8", bg_color="#0d1527", border_color="#1e293b", dot_color="#22c55e", radius=10)
+        draw_card_pill(draw, W // 2 - eng_w // 2 - 18, 38, eng_txt, font_engine, text_color="#cbd5e1", bg_color="#151d2a", border_color="#243247", dot_color="#22c55e", radius=10)
 
         dt = datetime.fromisoformat(fixture["utc_date"].replace("Z", "+00:00"))
         date_str = dt.strftime("%a %d %b • %H:%M UTC")
         font_date = get_card_font(14)
         dt_bb = draw.textbbox((0, 0), date_str, font=font_date)
         dt_w = dt_bb[2] - dt_bb[0]
-        draw_card_pill(draw, W - 45 - dt_w - 28, 38, date_str, font_date, text_color="#cbd5e1", bg_color="#111827", border_color="#334155", radius=10)
+        draw_card_pill(draw, W - 45 - dt_w - 28, 38, date_str, font_date, text_color="#e2e8f0", bg_color="#17202e", border_color="#334155", radius=10)
 
         # ── 2. TEAMS MATCHUP ───────────────────────────────────────────
         home_clean = clean_team_name(fixture["home_name"])
@@ -696,49 +696,49 @@ def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
                 break
 
         draw.text((45, 102), home_clean, fill="#ffffff", font=font_team)
-        draw.text((47, 146), "HOME", fill="#64748b", font=font_sub)
+        draw.text((47, 146), "HOME", fill="#94a3b8", font=font_sub)
 
         a_bb = draw.textbbox((0, 0), away_clean, font=font_team)
         away_w = a_bb[2] - a_bb[0]
         draw.text((W - 45 - away_w, 102), away_clean, fill="#ffffff", font=font_team)
         sub_bb = draw.textbbox((0, 0), "AWAY", font=font_sub)
-        draw.text((W - 45 - (sub_bb[2] - sub_bb[0]), 146), "AWAY", fill="#64748b", font=font_sub)
+        draw.text((W - 45 - (sub_bb[2] - sub_bb[0]), 146), "AWAY", fill="#94a3b8", font=font_sub)
 
-        # VS Center emblem
+        # VS Center emblem: Emerald & Mint
         vs_cx, vs_cy = W // 2, 126
-        draw.ellipse([vs_cx - 25, vs_cy - 25, vs_cx + 25, vs_cy + 25], fill="#0f172a", outline="#0284c7", width=2)
+        draw.ellipse([vs_cx - 25, vs_cy - 25, vs_cx + 25, vs_cy + 25], fill="#13201d", outline="#10b981", width=2)
         font_vs = get_card_font(15, bold=True)
         vs_bb = draw.textbbox((0, 0), "VS", font=font_vs)
-        draw.text((vs_cx - (vs_bb[2] - vs_bb[0]) // 2, vs_cy - (vs_bb[3] - vs_bb[1]) // 2 - 1), "VS", fill="#38bdf8", font=font_vs)
+        draw.text((vs_cx - (vs_bb[2] - vs_bb[0]) // 2, vs_cy - (vs_bb[3] - vs_bb[1]) // 2 - 1), "VS", fill="#34d399", font=font_vs)
 
         # ── 3. HERO PICK CONTAINER ─────────────────────────────────────
         pick_y0, pick_y1 = 175, 335
-        draw.rounded_rectangle([45, pick_y0, W - 45, pick_y1], radius=16, fill="#0d1424", outline="#2e2b6b", width=2)
-        draw.rounded_rectangle([47, pick_y0 + 2, W - 47, pick_y1 - 2], radius=14, outline="#4338ca", width=1)
+        draw.rounded_rectangle([45, pick_y0, W - 45, pick_y1], radius=16, fill="#101924", outline="#1e3a34", width=2)
+        draw.rounded_rectangle([47, pick_y0 + 2, W - 47, pick_y1 - 2], radius=14, outline="#059669", width=1)
 
         font_pick_tag = get_card_font(12, bold=True)
-        draw_card_pill(draw, 65, pick_y0 + 16, "MODEL RECOMMENDATION", font_pick_tag, text_color="#a5b4fc", bg_color="#1e1b4b", border_color="#4f46e5", dot_color="#818cf8", radius=6, padding_x=10, padding_y=4)
+        draw_card_pill(draw, 65, pick_y0 + 16, "MODEL RECOMMENDATION", font_pick_tag, text_color="#d1fae5", bg_color="#064e3b", border_color="#10b981", dot_color="#34d399", radius=6, padding_x=10, padding_y=4)
 
         pick_text = clean_text_for_image(prediction["pick_name"]).upper()
         font_pick_val = get_card_font(30, bold=True)
         draw.text((65, pick_y0 + 52), pick_text, fill="#fbbf24", font=font_pick_val)
 
         conf_level = prediction["confidence_level"]
-        conf_color = "#22c55e" if "High" in conf_level else ("#eab308" if "Med" in conf_level else "#94a3b8")
+        conf_color = "#10b981" if "High" in conf_level else ("#f59e0b" if "Med" in conf_level else "#94a3b8")
         font_badge = get_card_font(14)
 
         cur_bx = 65
         by = pick_y0 + 102
 
-        pw, _ = draw_card_pill(draw, cur_bx, by, f"Confidence: {conf_level}", font_badge, text_color="#f8fafc", bg_color="#182235", border_color="#334155", dot_color=conf_color, radius=8)
+        pw, _ = draw_card_pill(draw, cur_bx, by, f"Confidence: {conf_level}", font_badge, text_color="#f8fafc", bg_color="#15222e", border_color="#293d4f", dot_color=conf_color, radius=8)
         cur_bx += pw + 12
 
-        pw, _ = draw_card_pill(draw, cur_bx, by, f"Stake: {prediction['stake_units']}", font_badge, text_color="#f8fafc", bg_color="#182235", border_color="#334155", radius=8)
+        pw, _ = draw_card_pill(draw, cur_bx, by, f"Stake: {prediction['stake_units']}", font_badge, text_color="#f8fafc", bg_color="#15222e", border_color="#293d4f", radius=8)
         cur_bx += pw + 12
 
-        draw_card_pill(draw, cur_bx, by, f"Model Odds: @{prediction['fair_odds']:.2f}", font_badge, text_color="#38bdf8", bg_color="#182235", border_color="#0284c7", radius=8)
+        draw_card_pill(draw, cur_bx, by, f"Model Odds: @{prediction['fair_odds']:.2f}", font_badge, text_color="#34d399", bg_color="#0f2620", border_color="#059669", radius=8)
 
-        # Expected Score display in hero card
+        # Expected Score display in hero card (Mint & Emerald)
         hg, ag = prediction["score"]
         exp_txt = f"{hg} - {ag}"
         font_score_label = get_card_font(12, bold=True)
@@ -746,18 +746,18 @@ def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
 
         sc_box_w = 180
         sc_x0 = W - 45 - sc_box_w - 18
-        draw.rounded_rectangle([sc_x0, pick_y0 + 18, sc_x0 + sc_box_w, pick_y1 - 18], radius=12, fill="#121826", outline="#27272a", width=1)
+        draw.rounded_rectangle([sc_x0, pick_y0 + 18, sc_x0 + sc_box_w, pick_y1 - 18], radius=12, fill="#0d1b18", outline="#10b981", width=1)
 
         lbl_bb = draw.textbbox((0, 0), "EXPECTED SCORE", font=font_score_label)
-        draw.text((sc_x0 + (sc_box_w - (lbl_bb[2] - lbl_bb[0])) // 2, pick_y0 + 32), "EXPECTED SCORE", fill="#71717a", font=font_score_label)
+        draw.text((sc_x0 + (sc_box_w - (lbl_bb[2] - lbl_bb[0])) // 2, pick_y0 + 32), "EXPECTED SCORE", fill="#6ee7b7", font=font_score_label)
 
         sc_bb = draw.textbbox((0, 0), exp_txt, font=font_score_val)
-        draw.text((sc_x0 + (sc_box_w - (sc_bb[2] - sc_bb[0])) // 2, pick_y0 + 58), exp_txt, fill="#38bdf8", font=font_score_val)
+        draw.text((sc_x0 + (sc_box_w - (sc_bb[2] - sc_bb[0])) // 2, pick_y0 + 58), exp_txt, fill="#34d399", font=font_score_val)
 
-        # ── 4. WIN PROBABILITY DISTRIBUTION ────────────────────────────
+        # ── 4. WIN PROBABILITY DISTRIBUTION (Pitch Green & Coral Rose) ──
         bar_y = 356
         font_section = get_card_font(12, bold=True)
-        draw.text((45, bar_y), "WIN PROBABILITY DISTRIBUTION", fill="#64748b", font=font_section)
+        draw.text((45, bar_y), "WIN PROBABILITY DISTRIBUTION", fill="#94a3b8", font=font_section)
 
         bx0, by0, bx1, by1 = 45, bar_y + 22, W - 45, bar_y + 60
         bw = bx1 - bx0
@@ -771,16 +771,16 @@ def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
         dw = int(bw * dp)
         aw = bw - hw - dw
 
-        draw.rounded_rectangle([bx0, by0, bx1, by1], radius=10, fill="#1e293b")
+        draw.rounded_rectangle([bx0, by0, bx1, by1], radius=10, fill="#1c2635")
 
-        # Home bar (Blue)
-        draw.rounded_rectangle([bx0, by0, bx0 + hw, by1], radius=10, fill="#2563eb")
-        draw.rectangle([bx0 + max(0, hw - 10), by0, bx0 + hw, by1], fill="#2563eb")
+        # Home bar (Emerald Green)
+        draw.rounded_rectangle([bx0, by0, bx0 + hw, by1], radius=10, fill="#059669")
+        draw.rectangle([bx0 + max(0, hw - 10), by0, bx0 + hw, by1], fill="#059669")
 
-        # Draw bar (Slate)
+        # Draw bar (Cool Slate)
         draw.rectangle([bx0 + hw, by0, bx0 + hw + dw, by1], fill="#475569")
 
-        # Away bar (Coral Red)
+        # Away bar (Coral Rose)
         draw.rounded_rectangle([bx0 + hw + dw, by0, bx1, by1], radius=10, fill="#e11d48")
         draw.rectangle([bx0 + hw + dw, by0, bx0 + hw + dw + 10, by1], fill="#e11d48")
 
@@ -806,8 +806,8 @@ def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
         dot_r = 5
         hl_y = by1 + 12
 
-        draw.ellipse([45, hl_y + 4, 45 + dot_r * 2, hl_y + 4 + dot_r * 2], fill="#3b82f6")
-        draw.text((62, hl_y), f"{home_clean} ({hp*100:.0f}%)", fill="#93c5fd", font=font_bar_lbl)
+        draw.ellipse([45, hl_y + 4, 45 + dot_r * 2, hl_y + 4 + dot_r * 2], fill="#10b981")
+        draw.text((62, hl_y), f"{home_clean} ({hp*100:.0f}%)", fill="#6ee7b7", font=font_bar_lbl)
 
         dl_txt = f"Draw ({dp*100:.0f}%)"
         dl_bb = draw.textbbox((0, 0), dl_txt, font=font_bar_lbl)
@@ -830,9 +830,9 @@ def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
         btts_pct = prediction["btts_yes_prob"] * 100 if btts_label == "YES" else (1 - prediction["btts_yes_prob"]) * 100
 
         cards_data = [
-            ("GOALS OVER 2.5", f"{prediction['over_2_5_prob']*100:.0f}%", "Market Probability", "#38bdf8"),
-            ("BOTH TEAMS TO SCORE", f"{btts_label} ({btts_pct:.0f}%)", "Expected Outcome", "#22c55e" if btts_label == "YES" else "#f59e0b"),
-            ("MOST LIKELY SCORE", f"{hg} - {ag}", "Dixon-Coles Highest Density", "#a78bfa"),
+            ("GOALS OVER 2.5", f"{prediction['over_2_5_prob']*100:.0f}%", "Market Probability", "#34d399"),
+            ("BOTH TEAMS TO SCORE", f"{btts_label} ({btts_pct:.0f}%)", "Expected Outcome", "#10b981" if btts_label == "YES" else "#fbbf24"),
+            ("MOST LIKELY SCORE", f"{hg} - {ag}", "Dixon-Coles Highest Density", "#34d399"),
         ]
 
         font_c_title = get_card_font(12, bold=True)
@@ -842,15 +842,15 @@ def create_match_card_image(fixture: dict, prediction: dict) -> str | None:
         for i, (title, val, sub, val_col) in enumerate(cards_data):
             cx0 = 45 + i * (gw + 16)
             cx1 = cx0 + gw
-            draw.rounded_rectangle([cx0, grid_y, cx1, grid_y + gh], radius=14, fill="#0d1424", outline="#1e293b", width=1)
-            draw.text((cx0 + 20, grid_y + 16), title, fill="#71717a", font=font_c_title)
+            draw.rounded_rectangle([cx0, grid_y, cx1, grid_y + gh], radius=14, fill="#121a24", outline="#202c3d", width=1)
+            draw.text((cx0 + 20, grid_y + 16), title, fill="#94a3b8", font=font_c_title)
             draw.text((cx0 + 20, grid_y + 40), val, fill=val_col, font=font_c_val)
-            draw.text((cx0 + 20, grid_y + 82), sub, fill="#4b5563", font=font_c_sub)
+            draw.text((cx0 + 20, grid_y + 82), sub, fill="#64748b", font=font_c_sub)
 
         # ── 6. FOOTER ──────────────────────────────────────────────────
         font_foot = get_card_font(11)
-        draw.text((45, H - 36), "Dixon-Coles Bivariate Poisson Distribution • Data-driven algorithmic selections", fill="#4b5563", font=font_foot)
-        draw.text((W - 190, H - 36), "RYUU PREDICTION AI", fill="#0284c7", font=font_foot)
+        draw.text((45, H - 36), "Dixon-Coles Bivariate Poisson Distribution • Data-driven algorithmic selections", fill="#64748b", font=font_foot)
+        draw.text((W - 190, H - 36), "RYUU PREDICTION AI", fill="#10b981", font=font_foot)
 
         # Convert RGBA to RGB and save
         img = img.convert("RGB")
