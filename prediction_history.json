@@ -4311,11 +4311,14 @@
     "over_2_5_prob": 0.8071807481339555,
     "btts_yes_prob": 0.6743870302768521,
     "created_at": "2026-09-01T20:19:46.155081+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      1
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 575326,
@@ -4337,11 +4340,14 @@
     "over_2_5_prob": 0.1882657969259458,
     "btts_yes_prob": 0.1883037161207509,
     "created_at": "2026-09-01T20:20:01.384271+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      2
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 575327,
@@ -4363,11 +4369,14 @@
     "over_2_5_prob": 0.5711362754497606,
     "btts_yes_prob": 0.38563438993542215,
     "created_at": "2026-09-01T20:20:17.492926+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      3,
+      2
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 575328,
@@ -4389,11 +4398,14 @@
     "over_2_5_prob": 0.6854463022238553,
     "btts_yes_prob": 0.6740967793186489,
     "created_at": "2026-09-01T20:20:33.250463+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      3
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 575329,
@@ -4753,6 +4765,58 @@
     "over_2_5_prob": 0.581386236055639,
     "btts_yes_prob": 0.2764609811960113,
     "created_at": "2026-09-04T20:02:48.334523+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 565797,
+    "competition": "Bundesliga",
+    "competition_code": "BL1",
+    "home_name": "1. FC Union Berlin",
+    "away_name": "FC Schalke 04",
+    "utc_date": "2026-09-11T18:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "1. FC Union Berlin Win",
+    "pick_prob": 0.949285240160327,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.05,
+    "predicted_score": [
+      3,
+      0
+    ],
+    "over_2_5_prob": 0.7780850974446248,
+    "btts_yes_prob": 0.2556747704011748,
+    "created_at": "2026-09-09T12:53:20.873264+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558606,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "Venezia FC",
+    "away_name": "ACF Fiorentina",
+    "utc_date": "2026-09-11T18:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "ACF Fiorentina Win",
+    "pick_prob": 0.5182414102253937,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 1.93,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.14072539389609334,
+    "btts_yes_prob": 0.17112949569695243,
+    "created_at": "2026-09-09T12:53:35.961345+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
