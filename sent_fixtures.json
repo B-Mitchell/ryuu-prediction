@@ -1,5 +1,11 @@
 {
-  "fixtures": {},
+  "fixtures": {
+    "2026-10-07": [
+      564706,
+      565820,
+      559669
+    ]
+  },
   "announcements": {
     "announce_PD_2026-08-15_d4": true,
     "announce_PD_2026-08-15_d3": true,
