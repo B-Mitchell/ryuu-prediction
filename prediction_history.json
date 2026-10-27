@@ -13008,11 +13008,14 @@
     "over_2_5_prob": 0.8598492693408406,
     "btts_yes_prob": 0.7890633950761775,
     "created_at": "2026-10-24T12:35:50.454541+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558556,
@@ -13216,6 +13219,58 @@
     "over_2_5_prob": 0.8483573079487569,
     "btts_yes_prob": 0.5773915201761871,
     "created_at": "2026-10-26T15:05:48.657482+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558558,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "Frosinone Calcio",
+    "away_name": "US Lecce",
+    "utc_date": "2026-10-29T17:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Frosinone Calcio Win",
+    "pick_prob": 0.49498686600536684,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.02,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.6800156835643096,
+    "btts_yes_prob": 0.6795670967261843,
+    "created_at": "2026-10-27T14:18:20.954620+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558551,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "ACF Fiorentina",
+    "away_name": "Atalanta BC",
+    "utc_date": "2026-10-29T19:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Atalanta Win",
+    "pick_prob": 0.4469577010657995,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.24,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.5817164190917603,
+    "btts_yes_prob": 0.6117013908588996,
+    "created_at": "2026-10-27T14:18:36.393287+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
