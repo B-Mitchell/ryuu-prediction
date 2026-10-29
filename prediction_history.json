@@ -13269,11 +13269,14 @@
     "over_2_5_prob": 0.6800156835643096,
     "btts_yes_prob": 0.6795670967261843,
     "created_at": "2026-10-27T14:18:20.954620+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      5,
+      1
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558551,
