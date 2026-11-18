@@ -16612,5 +16612,83 @@
     "actual_outcome": "AWAY_WIN",
     "is_outcome_correct": true,
     "is_exact_score_correct": false
+  },
+  {
+    "fixture_id": 564748,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "Athletic Club",
+    "away_name": "RCD Espanyol de Barcelona",
+    "utc_date": "2026-11-20T20:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Athletic Bilbao Win",
+    "pick_prob": 0.712151627458888,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.4,
+    "predicted_score": [
+      1,
+      0
+    ],
+    "over_2_5_prob": 0.3477573708916866,
+    "btts_yes_prob": 0.2526207980608028,
+    "created_at": "2026-11-18T00:13:50.021804+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 565859,
+    "competition": "Bundesliga",
+    "competition_code": "BL1",
+    "home_name": "FC Bayern M\u00fcnchen",
+    "away_name": "1. FC K\u00f6ln",
+    "utc_date": "2026-11-20T19:30:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Bayern Munich Win",
+    "pick_prob": 0.9076660513602073,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.1,
+    "predicted_score": [
+      3,
+      0
+    ],
+    "over_2_5_prob": 0.8225031188962431,
+    "btts_yes_prob": 0.4686399999167795,
+    "created_at": "2026-11-18T00:14:05.680732+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 559622,
+    "competition": "Ligue 1",
+    "competition_code": "FL1",
+    "home_name": "ES Troyes AC",
+    "away_name": "Le Havre AC",
+    "utc_date": "2026-11-20T19:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Le Havre Win",
+    "pick_prob": 0.513200089497697,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 1.95,
+    "predicted_score": [
+      1,
+      2
+    ],
+    "over_2_5_prob": 0.7892223889248078,
+    "btts_yes_prob": 0.7644873404868903,
+    "created_at": "2026-11-18T00:14:22.292945+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
   }
 ]
