@@ -16836,11 +16836,14 @@
     "over_2_5_prob": 0.7860591609408876,
     "btts_yes_prob": 0.7230737511209597,
     "created_at": "2026-11-19T17:15:56.304329+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560650,
@@ -17007,11 +17010,14 @@
     "over_2_5_prob": 0.5170886433474594,
     "btts_yes_prob": 0.24168302520916854,
     "created_at": "2026-11-19T17:17:29.381382+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      2,
+      1
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 565857,
@@ -17062,11 +17068,14 @@
     "over_2_5_prob": 0.662112151803427,
     "btts_yes_prob": 0.5119064992903216,
     "created_at": "2026-11-19T17:17:59.796888+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      5
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 565860,
@@ -17291,11 +17300,14 @@
     "over_2_5_prob": 0.804999577315979,
     "btts_yes_prob": 0.779780807409214,
     "created_at": "2026-11-19T17:20:02.232708+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559628,
@@ -17346,11 +17358,14 @@
     "over_2_5_prob": 0.8811687265349316,
     "btts_yes_prob": 0.699598907848026,
     "created_at": "2026-11-19T17:20:33.540324+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      1
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559623,
@@ -17372,11 +17387,14 @@
     "over_2_5_prob": 0.8929981519210434,
     "btts_yes_prob": 0.7393269806994451,
     "created_at": "2026-11-19T17:20:48.689097+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      1
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559624,
@@ -17398,11 +17416,14 @@
     "over_2_5_prob": 0.25698750662742553,
     "btts_yes_prob": 0.2551540632022008,
     "created_at": "2026-11-19T17:21:03.971862+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      1
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559627,
@@ -17424,11 +17445,14 @@
     "over_2_5_prob": 0.7262988383414885,
     "btts_yes_prob": 0.7272623739418045,
     "created_at": "2026-11-19T17:21:19.094430+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      1
+    ],
+    "actual_outcome": "AWAY_WIN",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560646,
@@ -17502,11 +17526,14 @@
     "over_2_5_prob": 0.895207346208729,
     "btts_yes_prob": 0.7464904804487293,
     "created_at": "2026-11-20T00:01:53.460124+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      3,
+      2
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 564750,
@@ -17918,6 +17945,240 @@
     "over_2_5_prob": 0.935107551261884,
     "btts_yes_prob": 0.8981246874893077,
     "created_at": "2026-11-21T16:02:51.667698+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575395,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "Galatasaray SK",
+    "away_name": "Aston Villa FC",
+    "utc_date": "2026-11-24T17:45:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Galatasaray Win",
+    "pick_prob": 0.5074143008962005,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 1.97,
+    "predicted_score": [
+      2,
+      2
+    ],
+    "over_2_5_prob": 0.8748852752175965,
+    "btts_yes_prob": 0.8397633133541444,
+    "created_at": "2026-11-22T16:09:45.624800+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575396,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "FK Bod\u00f8/Glimt",
+    "away_name": "LASK Linz",
+    "utc_date": "2026-11-24T17:45:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "FK Bod\u00f8/Glimt Win",
+    "pick_prob": 0.625196966192654,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.6,
+    "predicted_score": [
+      1,
+      0
+    ],
+    "over_2_5_prob": 0.2221135026410791,
+    "btts_yes_prob": 0.1979197648114758,
+    "created_at": "2026-11-22T16:10:00.774104+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575397,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "Real Madrid CF",
+    "away_name": "PSV",
+    "utc_date": "2026-11-24T20:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Real Madrid Win",
+    "pick_prob": 0.6846921912367112,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.46,
+    "predicted_score": [
+      2,
+      1
+    ],
+    "over_2_5_prob": 0.751156205450548,
+    "btts_yes_prob": 0.6625856869582614,
+    "created_at": "2026-11-22T16:10:19.273062+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575398,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "Manchester City FC",
+    "away_name": "SSC Napoli",
+    "utc_date": "2026-11-24T20:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Man City Win",
+    "pick_prob": 0.7510085310512655,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.33,
+    "predicted_score": [
+      3,
+      1
+    ],
+    "over_2_5_prob": 0.9015860972980725,
+    "btts_yes_prob": 0.784767718971942,
+    "created_at": "2026-11-22T16:10:34.532778+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575399,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "Arsenal FC",
+    "away_name": "Borussia Dortmund",
+    "utc_date": "2026-11-24T20:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Arsenal Win",
+    "pick_prob": 0.4916956679876852,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.03,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.12473911442449936,
+    "btts_yes_prob": 0.1639909794594395,
+    "created_at": "2026-11-22T16:10:49.913350+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575400,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "Feyenoord Rotterdam",
+    "away_name": "FC Porto",
+    "utc_date": "2026-11-24T20:00:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "FC Porto Win",
+    "pick_prob": 0.5168817879325422,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 1.93,
+    "predicted_score": [
+      1,
+      2
+    ],
+    "over_2_5_prob": 0.7647198078637057,
+    "btts_yes_prob": 0.7432975120342898,
+    "created_at": "2026-11-22T16:11:05.357598+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575401,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "\u0160K Slovan Bratislava",
+    "away_name": "Real Betis Balompi\u00e9",
+    "utc_date": "2026-11-24T20:00:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Real Betis Win",
+    "pick_prob": 0.7930073105208887,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.26,
+    "predicted_score": [
+      0,
+      2
+    ],
+    "over_2_5_prob": 0.42648620909993856,
+    "btts_yes_prob": 0.23295504723533944,
+    "created_at": "2026-11-22T16:11:20.651867+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575402,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "RB Leipzig",
+    "away_name": "Racing Club de Lens",
+    "utc_date": "2026-11-24T20:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Leipzig Win",
+    "pick_prob": 0.8983894987118459,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.11,
+    "predicted_score": [
+      3,
+      0
+    ],
+    "over_2_5_prob": 0.8305158713444946,
+    "btts_yes_prob": 0.5035256409433297,
+    "created_at": "2026-11-22T16:11:36.003270+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 575403,
+    "competition": "Champions League",
+    "competition_code": "CL",
+    "home_name": "Como 1907",
+    "away_name": "PAE AEK",
+    "utc_date": "2026-11-24T20:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "Como Win",
+    "pick_prob": 0.949285240160327,
+    "confidence_level": "High",
+    "stake_units": "3/3 Units",
+    "fair_odds": 1.05,
+    "predicted_score": [
+      3,
+      0
+    ],
+    "over_2_5_prob": 0.7780850974446248,
+    "btts_yes_prob": 0.2556747704011748,
+    "created_at": "2026-11-22T16:11:51.276170+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
