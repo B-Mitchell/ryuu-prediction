@@ -18573,11 +18573,14 @@
     "over_2_5_prob": 0.8227830294769535,
     "btts_yes_prob": 0.46987664111403316,
     "created_at": "2026-11-25T01:47:23.933417+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      3,
+      3
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 558515,
@@ -18599,11 +18602,14 @@
     "over_2_5_prob": 0.6737601283461437,
     "btts_yes_prob": 0.5098694107154826,
     "created_at": "2026-11-25T01:47:38.784010+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      0,
+      0
+    ],
+    "actual_outcome": "DRAW",
+    "is_outcome_correct": false,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 559616,
@@ -18625,11 +18631,14 @@
     "over_2_5_prob": 0.5262239844546013,
     "btts_yes_prob": 0.5356293365853299,
     "created_at": "2026-11-25T01:47:53.485260+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      1,
+      0
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560658,
@@ -18651,11 +18660,14 @@
     "over_2_5_prob": 0.14271990439324753,
     "btts_yes_prob": 0.2096723133626998,
     "created_at": "2026-11-25T18:34:58.631274+00:00",
-    "status": "PENDING",
-    "actual_score": null,
-    "actual_outcome": null,
-    "is_outcome_correct": null,
-    "is_exact_score_correct": null
+    "status": "RESOLVED",
+    "actual_score": [
+      3,
+      2
+    ],
+    "actual_outcome": "HOME_WIN",
+    "is_outcome_correct": true,
+    "is_exact_score_correct": false
   },
   {
     "fixture_id": 560652,
@@ -19691,6 +19703,84 @@
     "over_2_5_prob": 0.5612686641613074,
     "btts_yes_prob": 0.3127057385804553,
     "created_at": "2026-11-27T01:22:47.526538+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 564763,
+    "competition": "La Liga",
+    "competition_code": "PD",
+    "home_name": "RCD Espanyol de Barcelona",
+    "away_name": "Getafe CF",
+    "utc_date": "2026-11-30T20:00:00Z",
+    "predicted_pick": "HOME_WIN",
+    "pick_name": "RCD Espanyol de Barcelona Win",
+    "pick_prob": 0.4591030898438175,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.18,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.10705600188593865,
+    "btts_yes_prob": 0.15497001779528105,
+    "created_at": "2026-11-28T00:52:00.078007+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558516,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "US Lecce",
+    "away_name": "Atalanta BC",
+    "utc_date": "2026-11-30T17:30:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "Atalanta Win",
+    "pick_prob": 0.45090605298278735,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.22,
+    "predicted_score": [
+      1,
+      1
+    ],
+    "over_2_5_prob": 0.674078653136102,
+    "btts_yes_prob": 0.6831726137569228,
+    "created_at": "2026-11-28T00:52:15.309242+00:00",
+    "status": "PENDING",
+    "actual_score": null,
+    "actual_outcome": null,
+    "is_outcome_correct": null,
+    "is_exact_score_correct": null
+  },
+  {
+    "fixture_id": 558510,
+    "competition": "Serie A",
+    "competition_code": "SA",
+    "home_name": "Cagliari Calcio",
+    "away_name": "AC Milan",
+    "utc_date": "2026-11-30T19:45:00Z",
+    "predicted_pick": "AWAY_WIN",
+    "pick_name": "AC Milan Win",
+    "pick_prob": 0.4346802014375211,
+    "confidence_level": "Medium",
+    "stake_units": "2/3 Units",
+    "fair_odds": 2.3,
+    "predicted_score": [
+      0,
+      0
+    ],
+    "over_2_5_prob": 0.1936220745964235,
+    "btts_yes_prob": 0.2712686526639222,
+    "created_at": "2026-11-28T00:52:30.167744+00:00",
     "status": "PENDING",
     "actual_score": null,
     "actual_outcome": null,
